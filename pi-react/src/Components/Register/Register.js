@@ -1,4 +1,4 @@
-import React,{ Component } from "react";
+import React,{ Component } from "react"; 
 
 export default class Register extends Component {
 constructor(props) {
@@ -10,7 +10,7 @@ constructor(props) {
 
 
 evitarSubmit(event){
-event.preventdefault();
+event.preventDefault();
 }
 
 controlarCambios(event){
@@ -18,32 +18,7 @@ controlarCambios(event){
 }
 render(){
     return(
-    <div className="container">
-        <h1>UdeSA Movies</h1>
-
-        <nav>
-          <ul className="nav nav-tabs my-4">
-            <li className="nav-item">
-              <a className="nav-link" href="index.html">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="movies.html">Películas</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="series.html">Series</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="favorites.html">Favoritas</a>
-            </li>
-            <li className="nav-item ml-auto">
-              <a className="nav-link active" href="register.html">Registro</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="login.html">Login</a>
-            </li>
-          </ul>
-        </nav>
-
+  <div className="container">
         <h2 className="alert alert-primary">Registro</h2>
 
         <div className="row justify-content-center">
@@ -87,12 +62,9 @@ render(){
 
           </div>
         </div>
-
-        <footer className="alert alert-primary mt-4 text-center">
-          <p className="mb-0">Integrante 1 | Integrante 2 | Integrante 3</p>
-        </footer>
-
       </div>
+
+     
     )
 }
 
