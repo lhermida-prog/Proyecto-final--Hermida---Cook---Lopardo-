@@ -1,21 +1,23 @@
-import React from 'react';
-import Header from "./Components/Header-Footer/Header"
-import './App.css';
+import React from "react"; 
+import Home from "./components/screens/Home/Home";
+import {Route , Switch} from "react-router-dom"
+import Login from "./components/screens/Login/Login"
+import Notfound from "./Components/Not-Found/Not-Found";
 
-import Footer from './Components/Header-Footer/Footer';
-import Buscador from "./Components/Buscador/Buscador"
+
+
 
 function App() {
+  
   return (
     <React.Fragment>
-      <div className="container">
-        <Header/>
-        <Buscador/>
-        
-
-
-        <Footer/>
-      </div>
+      <Header />
+      <Switch>
+        <Route path = '/login.html' component = {Login}/>
+        <Route path = '/' component = {Home}/>
+        <Route path = '*' component = {Notfound}/>
+      </Switch>  
+      <Footer/>
     </React.Fragment>
   );
 }
