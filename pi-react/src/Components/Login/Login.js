@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import Header from "../Header-Footer/Header";
+import Footer from "../Header-Footer/Footer";
 
 export default class Register extends Component {
 constructor(props) {
@@ -20,54 +21,36 @@ controlarCambios(event){
 render(){
     return(
     <div className="container">
+        <Header/>
 
         <h2 className="alert alert-primary">Registro</h2>
 
         <div className="row justify-content-center">
           <div className="col-md-6">
-
             <form onSubmit={(e) => this.evitarSubmit(e)}>
 
               <div className="form-group">
                 <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  value={this.state.email}
-                  onChange={(e) => this.controlarCambios(e)}
-                  placeholder="Ingresá tu email"
-                />
+                <input type="email" className="form-control" name="email" value={this.state.email} onChange={(e) => this.controlarCambios(e)} placeholder="Ingresá tu email"/>
               </div>
 
               <div className="form-group">
-                <label>Contraseña</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={this.state.password}
-                  onChange={(e) => this.controlarCambios(e)}
-                  placeholder="Ingresá tu contraseña"
-                />
+                <label>Password</label>
+                <input type="password" className="form-control" name="password" value={this.state.password} onChange={(e) => this.controlarCambios(e)} placeholder="Ingresá tu contraseña"/>
               </div>
 
-              <button type="submit" className="btn btn-primary btn-block">
-                Registrarse
-              </button>
+              <button type="submit" className="btn btn-primary btn-block"> Iniciar sesion</button>
 
             </form>
 
             <p className="mt-3 text-center">
-              ¿Ya tenés cuenta? <a href="login.html">Iniciar sesión</a>
+              ¿No tenes cuenta? <a href="register.html">Registrate</a>
             </p>
 
           </div>
         </div>
 
-        <footer className="alert alert-primary mt-4 text-center">
-          <p className="mb-0">Integrante 1 | Integrante 2 | Integrante 3</p>
-        </footer>
+        <Footer/>
 
       </div>
     )

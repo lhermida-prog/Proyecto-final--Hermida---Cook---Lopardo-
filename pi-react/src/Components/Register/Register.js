@@ -1,4 +1,6 @@
 import React,{ Component } from "react";
+import Footer from "../Header-Footer/Footer";
+import Header from "../Header-Footer/Header";
 
 export default class Register extends Component {
 constructor(props) {
@@ -19,6 +21,7 @@ controlarCambios(event){
 render(){
     return(
     <div className="container">
+      <Header/>
 
         <h2 className="alert alert-primary">Registro</h2>
 
@@ -64,9 +67,7 @@ render(){
           </div>
         </div>
 
-        <footer className="alert alert-primary mt-4 text-center">
-          <p className="mb-0">Integrante 1 | Integrante 2 | Integrante 3</p>
-        </footer>
+        <Footer/>
 
       </div>
     )
