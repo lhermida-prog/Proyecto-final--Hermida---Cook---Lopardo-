@@ -19,7 +19,7 @@ function Header() {
           {Etiquetas.map( item => { 
           return (
           <li className="nav-item">
-              <a className="nav-link" href = {item.link} >{item.nombre}</a> 
+              <a className="nav-link" href = {item.link}> <link to ={item.link}/> {item.nombre}</a> 
           </li>
           )
           })}
