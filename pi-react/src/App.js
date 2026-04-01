@@ -1,9 +1,11 @@
 import React from "react"; 
 import Home from "./screens/Home/Home"
-import { BrowserRouter, Route, Switch, Link} from "react-router-dom";import Login from "./Components/Login/Login";
-import Notfound from "./Components/Not-Found/Not-Found";
+import { BrowserRouter, Route, Switch, Link} from "react-router-dom";import Login from "./screens/Login/Login";
+import Notfound from "./screens/Not-Found/Not-Found";
 import Header from "./Components/Header-Footer/Header"
 import Footer from "./Components/Header-Footer/Footer"
+import Detalles from "./screens/Pagina-Detalles/Pagina-Detalles"
+import Register from "./screens/Register/Register"
 
 
 
@@ -14,9 +16,14 @@ function App() {
     <React.Fragment>
       <Header />
       <Switch>
-        <Route path = '/login.js' component = {Login}/>
+        <Route path = '/login' component = {Login}/>
+        <Route path = '/register' component = {Register}/>
+
         <Route path = '/' exact={true} component = {Home}/>
+        <Route path = '/detalle/:id' component = {Detalles}/>
         <Route path = '*' component = {Notfound}/>
+
+        
       </Switch>  
       <Footer/>
     </React.Fragment>

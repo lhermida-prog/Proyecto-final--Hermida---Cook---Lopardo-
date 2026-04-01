@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
-import Footer from "../Header-Footer/Footer";
-import Header from "../Header-Footer/Header";
+import Footer from "../../Components/Header-Footer/Footer";
+import Header from "../../Components/Header-Footer/Header";
 
 export default class Register extends Component {
 constructor(props) {
@@ -20,13 +20,10 @@ controlarCambios(event){
 }
 render(){
     return(
-<<<<<<< HEAD
     <div className="container">
       <Header/>
-
-=======
   <div className="container">
->>>>>>> af598405d55f1146e71f8b64ad37cf4a3e6c58df
+
         <h2 className="alert alert-primary">Registro</h2>
 
         <div className="row justify-content-center">
@@ -70,12 +67,11 @@ render(){
 
           </div>
         </div>
-<<<<<<< HEAD
-
+      </div>
         <Footer/>
 
-=======
->>>>>>> af598405d55f1146e71f8b64ad37cf4a3e6c58df
+
+
       </div>
 
      

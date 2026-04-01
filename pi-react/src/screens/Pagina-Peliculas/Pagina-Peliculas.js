@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Pelicula from "../Pelicula/Pelicula";
+import Pelicula from "../../Components/Pelicula/Pelicula";
 
 class PaginaPeliculas extends Component {
   constructor(props) {
@@ -18,7 +18,9 @@ class PaginaPeliculas extends Component {
       .then(data => this.setState(
         {
           datos: data.results,
+          
         }))
+        console.log(this.state.datos)
       .catch(err => console.error(err));
   }
 
