@@ -1,8 +1,9 @@
 import React from "react"; 
 import Home from "./screens/Home/Home"
-import { Route, Switch } from 'react-router-dom';
-import Login from "./components/screens/Login/Login"
+import { BrowserRouter, Route, Switch, Link} from "react-router-dom";import Login from "./Components/Login/Login";
 import Notfound from "./Components/Not-Found/Not-Found";
+import Header from "./Components/Header-Footer/Header"
+import Footer from "./Components/Header-Footer/Footer"
 
 
 

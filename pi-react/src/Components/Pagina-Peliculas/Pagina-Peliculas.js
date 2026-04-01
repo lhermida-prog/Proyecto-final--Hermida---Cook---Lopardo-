@@ -1,4 +1,3 @@
-import React from "react";
 import React, { Component } from 'react'
 import Pelicula from "../Pelicula/Pelicula";
 
@@ -28,7 +27,7 @@ class PaginaPeliculas extends Component {
     return (
       <React.Fragment>
         <section className="row cards all-movies" id="movies">
-          {this.state.datos.length === 0 ? (
+          {this.state.datos === "" ? (
             <h3>Cargando...</h3>
           ):(
             this.state.datos.map(peli => <Pelicula

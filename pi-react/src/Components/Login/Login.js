@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import Header from "../Header-Footer/Header";
 import Footer from "../Header-Footer/Footer";
 
-export default class Register extends Component {
+class Login extends Component {
 constructor(props) {
     super(props);
     this.state= {email:'',password:''}
@@ -55,3 +55,5 @@ render(){
       </div>
     )
 }}
+
+export default Login
