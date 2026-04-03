@@ -1,0 +1,35 @@
+.detalles {
+  width: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  background-color: antiquewhite;
+}
+
+.detalles img {
+  width: 300px;
+  margin-right: 20px;
+}
+
+.detalles-info {
+  width: 60%;
+}
+
+.detalles-info h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.detalles-info p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.detalles-info button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+    border: none;
+}

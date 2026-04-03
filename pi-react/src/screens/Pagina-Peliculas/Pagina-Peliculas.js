@@ -10,17 +10,15 @@ class PaginaPeliculas extends Component {
     }
   }
   componentDidMount() {
-    
-    const options = { method: 'GET', headers: { accept: 'application/json' } };
 
-    fetch('https://api.themoviedb.org/3/keyword/keyword_id/movies', options)
+    fetch('https://api.themoviedb.org/3/movie/popular?api_key=5819e166bc6813d39312079be7ac67ba')
       .then(res => res.json())
       .then(data => this.setState(
         {
           datos: data.results,
           
         }))
-        console.log(this.state.datos)
+
       .catch(err => console.error(err));
   }
 

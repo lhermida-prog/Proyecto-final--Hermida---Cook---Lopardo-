@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import "./detalles.css"
 
 
 class PeliculasDetalles extends Component{
@@ -10,29 +11,33 @@ class PeliculasDetalles extends Component{
     }
 
     componentDidMount (){
-        const id = this.props.peli.id;
-        fetch(`https://api.themoviedb.org/3/account/${id}`)
+        let id = this.props.match.params.id;
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(data => this.setState({pelicula: data}))
         .catch(err => console.error(err));
     }
 
     render (){
-        if (this.state.pelicula === null){
+        if (this.state.pelicula === ""){
             return <h2>Cargando Pelicula...</h2>
         }
-        const {imagen,nombre,Calificacion,Estreno,Duracion,Sinopsis, Genero}= this.state.pelicula
 
         return (
-            <section className="unpersonaje">
-                <img src = {imagen} alt = {nombre}/>
-                <h1>{nombre}</h1>
-                <p> {Calificacion} </p>
-                <p> {Estreno} </p>
-                <p> {Sinopsis} </p>
-                <p> Genero : {Genero}</p>
-                <p>Duracion: {Duracion}</p>
-                <button>Agregar a Favoritos</button>
+            <section className="detalles">
+                <div className="detalle-img">
+                    <img src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
+                </div>
+
+                <div className="detalles-info">
+                    <h1>{this.state.pelicula.title}</h1>
+                    <p>Puntuacion: {this.state.pelicula.vote_average}</p>
+                    <p>Fecha de lanzamiento: {this.state.pelicula.release_date}</p>
+                    <p>Resumen: {this.state.pelicula.overview}</p>
+                    <p>Genero: {this.state.pelicula.genres.name }</p>
+                    <p>Duracion: {this.state.pelicula.runtime} minutos</p>
+                    <button>Agregar a Favoritos</button>
+                </div>
             </section>
         )
     }

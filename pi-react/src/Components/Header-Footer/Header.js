@@ -1,5 +1,7 @@
 import React from "react";
 import "../Header-Footer/Header.css"
+import { Link } from "react-router-dom";
+
 
 function Header() {
     let Etiquetas = [

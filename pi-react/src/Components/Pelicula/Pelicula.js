@@ -1,46 +1,47 @@
-import React from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./pelicula.css"
 
-function Pelicula() {
-    let Etiquetas2 = [
-        {imagen : "https://image.tmdb.org/t/p/w500/tzrJulItjttxzoX0t3B2My46TS7.jpg",
-        title : "The Thursday Murder Club",
-        text : "A group of senior sleuths passionate about solving cold cases get plunged intoa real-life murder mystery in this comic crime caper.",
-        emote : "🩶"
-        },
-        {imagen : "https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg",
-        title : "F1",
-        text : "Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory.",
-        emote : "♥️"
-        },
-        {imagen : "https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg",
-        title : "I Know What You Did Last Summer",
-        text : "When five friends inadvertently cause a deadly car accident, they cover up their involvement and make a pact to keep it a secret rather than face the consequences. A year later, their past comes back to haunt them and they're forced to confront a horrifying truth: someone knows what they did last summer…and is hell-bent on revenge.",
-        emote : "♥️"
-        }, 
-        {imagen : "https://image.tmdb.org/t/p/w500/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg",
-        title : "Superman",
-        text : "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
-        emote : "♥️"
+   
+class Peliculas extends Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          datos_peliculas: [],
+    
         }
-  ]
-  return (
+      }
+      componentDidMount() {
+        fetch("https://api.themoviedb.org/3/movie/popular?api_key=5819e166bc6813d39312079be7ac67ba")
+          .then(res => res.json())
+          .then(data => this.setState(
+            {
+              datos_peliculas: data.results,
+              
+            }))
+    
+          .catch(err => console.error(err));
+      }
+  render() {
+    return (
     <React.Fragment>
         <h2 className="alert alert-primary">Popular movies this week</h2>
-        <section className="row cards" id="movies">
-        {Etiquetas2.map(item=>{
-        <article class="single-card-movie">
-            <img src={item.imagen} class="card-img-top" alt="..."/>
-            <div class="cardBody">
-                <h5 class="card-title">{item.title}</h5>
-                <p class="card-text"> {item.text}</p>
-                <a href="movie.html" class="btn btn-primary">Ver más</a>
-                <a href="" class="btn alert-primary">{item.emote}</a>
+        <section className="rowcards" id="movies">
+        {this.state.datos_peliculas.map(item=>(
+            <article key={item.id} className="single-card-movie">
+            <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} className="card-img-top" alt="..."/>
+            <div className="cardBody">
+                <h5 className="card-title">{item.title}</h5>
+                <p className="card-text">{item.overview}</p>
+                <Link to = {`/pelicula/${item.id}`}>Ir a detalle</Link>
             </div>
         </article>
-        })}
+        ))}
         </section>
     </React.Fragment>
-  )}
+    );
+  }
+}
 
 
-export default Pelicula
+export default Peliculas
