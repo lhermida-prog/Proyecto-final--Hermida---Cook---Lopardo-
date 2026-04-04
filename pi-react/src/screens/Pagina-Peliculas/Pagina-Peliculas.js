@@ -35,7 +35,7 @@ class PaginaPeliculas extends Component {
             id ={peli.id}
             lenguaje = {peli.original_language}
             titulo_o = {peli.original_title}
-            detalle ={peli.overview}
+            descripcion ={peli.overview}
             popularidad = {peli.popularity}
             img ={peli.poster_path}
             fecha ={peli.release_date}

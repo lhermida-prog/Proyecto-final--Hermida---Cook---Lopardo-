@@ -1,8 +1,10 @@
 import React,{ Component } from "react";
 import Footer from "../../Components/Header-Footer/Footer";
 import Header from "../../Components/Header-Footer/Header";
+import { Link } from "react-router-dom";
+import "./registro.css"
 
-export default class Register extends Component {
+class Register extends Component {
 constructor(props) {
     super(props);
     this.state= {email:'',password:''}
@@ -22,11 +24,11 @@ render(){
     return(
     <div className="container">
       <Header/>
-  <div className="container">
+    
+      <div className="registro-container">
 
         <h2 className="alert alert-primary">Registro</h2>
-
-        <div className="row justify-content-center">
+        <div className="regi">
           <div className="col-md-6">
 
             <form onSubmit={(e) => this.evitarSubmit(e)}>
@@ -56,27 +58,29 @@ render(){
               </div>
 
               <button type="submit" className="btn btn-primary btn-block">
-                Registrarse
+              <Link to="/login">Registrarse</Link>
               </button>
 
             </form>
 
             <p className="mt-3 text-center">
-              ¿Ya tenés cuenta? <a href="login.html">Iniciar sesión</a>
+              ¿Ya tenés cuenta? <Link to="/login">Iniciar sesión</Link>
             </p>
 
-          </div>
+         </div>
         </div>
       </div>
+        
+
+
         <Footer/>
-
-
-
       </div>
+      
 
      
     )
 }
 
 }
+export default Register
 

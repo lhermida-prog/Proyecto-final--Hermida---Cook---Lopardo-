@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
 constructor(props) {
@@ -22,8 +23,8 @@ render(){
     return(
     <div className="container">
         <Header/>
-
-        <h2 className="alert alert-primary">Registro</h2>
+        
+        <h2 className="alert alert-primary">Inicio de Sesion</h2>
 
         <div className="row justify-content-center">
           <div className="col-md-6">
@@ -44,7 +45,7 @@ render(){
             </form>
 
             <p className="mt-3 text-center">
-              ¿No tenes cuenta? <a href="register.html">Registrate</a>
+              ¿No tenes cuenta? <Link to="/register">Registrate</Link>
             </p>
 
           </div>

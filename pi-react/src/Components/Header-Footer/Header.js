@@ -1,16 +1,17 @@
 import React from "react";
 import "../Header-Footer/Header.css"
 import { Link } from "react-router-dom";
+import "../../App.css";
 
 
 function Header() {
     let Etiquetas = [
-      {nombre : "Home", link : "index.html"},
-      {nombre : "Peliculas" , link : "movies.html"},
-      {nombre : "Series" , link : "series.html"},
-      {nombre : "Favoritas" , link : "favorites.html"},
-      {nombre : "Registro" , link : "register.html"},
-      {nombre : "Login" , link : "login.html"}]
+      {nombre : "Home", link : "/"},
+      {nombre : "Peliculas" , link : "/peliculas"},
+      {nombre : "Series" , link : "/series"},
+      {nombre : "Favoritas" , link : "/favorites"},
+      {nombre : "Registro" , link : "/register"},
+      {nombre : "Login" , link : "/login"}]
 
 
   return (

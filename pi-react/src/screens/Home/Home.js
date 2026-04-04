@@ -12,7 +12,14 @@ function Home() {
       <div className="container">
         <Header/>
         <Buscador/>
+        <h2 className="alert alert-primary">Popular movies this week</h2>
+        <section className="rowcards" id="movies">
         <PaginaPeliculas/>
+        </section>
+        <h2 class="alert alert-warning">TV shows airing today</h2>
+        <section class="row cards" id="on-air-today">
+          
+        </section>
         
 
 
