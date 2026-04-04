@@ -1,9 +1,10 @@
 import React from "react"; 
 import Home from "./screens/Home/Home"
-import { BrowserRouter, Route, Switch, Link} from "react-router-dom";import Login from "./screens/Login/Login";
+import { BrowserRouter, Route, Switch, Link} from "react-router-dom";
 import Notfound from "./screens/Not-Found/Not-Found";
 import Detalles from "./screens/Pagina-Detalles/Pagina-Detalles"
 import Register from "./screens/Register/Register"
+import Login from "./screens/Login/Login";
 
 
 

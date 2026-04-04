@@ -12,9 +12,19 @@
   border: 1px solid #ccc;
   padding: 10px;
 }
+.Boton {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px;
+}
 
 .card-img-top {
   width: 100%;
+}
+.more{
+    color: blue;
+    text-align: right;
 }
 
 .cardBody {
