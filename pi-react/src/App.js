@@ -15,17 +15,16 @@ function App() {
   
   return (
     <React.Fragment>
-      <Header />
       <BrowserRouter>
       <Switch>
         <Route path = '/login' component = {Login}/>
         <Route path = '/register' component = {Register}/>
         <Route path = '/' exact={true} component = {Home}/>
-        <Route path = '/detalle/:id' component = {Detalles}/>
+        <Route path = '/pelicula/:id' component = {Detalles}/>
         <Route path = '*' component = {Notfound}/>
         </Switch>
         </BrowserRouter>  
-      <Footer/>
+
     </React.Fragment>
   );
 }
