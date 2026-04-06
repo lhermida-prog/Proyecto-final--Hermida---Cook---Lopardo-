@@ -7,7 +7,8 @@ class Pelicula extends Component{
     constructor(props){
         super(props)
         this.state={
-            estado : false
+            estado : false,
+            mostrar : false
         }
 
     }
@@ -45,6 +46,12 @@ Sacarfavorito(id){
     this.setState({estado:true})
 }
 
+Vermas = () => {
+    this.setState({
+        mostrar : !this.state.mostrar
+    })
+}
+
     render(){
     return (
         <React.Fragment>
@@ -52,7 +59,10 @@ Sacarfavorito(id){
             <img src={`https://image.tmdb.org/t/p/w500${this.props.img}`} className="card-img-top" alt="..."/>
             <div className="cardBody">
                 <h5 className="card-title">{this.props.titulo}</h5>
-                <p className="card-text">{this.props.descripcion}</p>
+                <button className="btn btn-primary" onClick={this.Vermas}>
+                    {this.state.mostrar ? "Ver menos" : "Ver más"}
+                </button>
+                <p className={`card-text ${this.state.mostrar ? "show" : "hide" }`}>{this.props.descripcion}</p>
                 <Link to = {`/pelicula/${this.props.id}`}>Ir a detalle</Link>
                 <button onClick={() => this.Agregarfavorito(this.props.id)} className="Boton">Agregar a Favoritos</button>
                 <button onClick={() => this.Sacarfavorito(this.props.id)} className="Boton">Sacar de Favoritos</button>  
