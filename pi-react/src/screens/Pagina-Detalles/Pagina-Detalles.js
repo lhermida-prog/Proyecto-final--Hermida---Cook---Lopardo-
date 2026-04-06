@@ -28,20 +28,19 @@ class PeliculasDetalles extends Component{
         return (
             <React.Fragment>
                 <Header/>
-                <section className="detalles">
-                    <div className="detalle-img">
-                        <img src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
-                    </div>
-
-                <div className="detalles-info">
-                    <h1>{this.state.pelicula.title}</h1>
+                <section className="row">
+                    <img className= "col-md-6" src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
+                    
+                <section class="col-md-6 info">
+                    <h3>Descripción</h3>
+                    <p className="description"> {this.state.pelicula.overview}</p>
+                    <h2 className="alert alert-primary">{this.state.pelicula.title}</h2>
                     <p>Puntuacion: {this.state.pelicula.vote_average}</p>
-                    <p>Fecha de lanzamiento: {this.state.pelicula.release_date}</p>
-                    <p>Resumen: {this.state.pelicula.overview}</p>
-                    <p>Genero: {this.state.pelicula.genres.name }</p>
-                    <p>Duracion: {this.state.pelicula.runtime} minutos</p>
+                    <p className="mt-0 mb-0" id="release-date"><strong>Fecha de lanzamiento:</strong> {this.state.pelicula.release_date}</p>
+                    <p className="mt-0 mb-0 length"><strong>Genero:</strong> {this.state.pelicula.genres.name }</p>
+                    <p className="mt-0 mb-0 length"><strong>Duracion:</strong> {this.state.pelicula.runtime} minutos</p>
                     <button>Agregar a Favoritos</button>
-                </div>
+                </section>
             </section>
             <Footer/>
             </React.Fragment>
