@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Link} from "react-router-dom";
 import Notfound from "./screens/Not-Found/Not-Found";
 import Header from "./Components/Header-Footer/Header"
 import Footer from "./Components/Header-Footer/Footer"
-import Detalles from "./screens/Pagina-Detalles/Pagina-Detalles"
+import Detalles from "./screens/Pagina-Detalles/Pagina-Detalles-peliculas"
 import Register from "./screens/Register/Register"
 import Login from "./screens/Login/Login";
 

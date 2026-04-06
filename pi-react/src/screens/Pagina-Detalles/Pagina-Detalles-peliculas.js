@@ -42,6 +42,7 @@ class PeliculasDetalles extends Component{
                     <button>Agregar a Favoritos</button>
                 </section>
             </section>
+            
             <Footer/>
             </React.Fragment>
         )
