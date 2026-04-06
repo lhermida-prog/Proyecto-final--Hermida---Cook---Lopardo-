@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
 import { Link } from "react-router-dom";
+import "./login.css"
 
 class Login extends Component {
 constructor(props) {
@@ -23,7 +24,7 @@ render(){
     return(
     <div className="container">
         <Header/>
-        
+        <div className="registro-container">
         <h2 className="alert alert-primary">Inicio de Sesion</h2>
 
         <div className="row justify-content-center">
@@ -40,7 +41,7 @@ render(){
                 <input type="password" className="form-control" name="password" value={this.state.password} onChange={(e) => this.controlarCambios(e)} placeholder="Ingresá tu contraseña"/>
               </div>
 
-              <button type="submit" className="btn btn-primary btn-block"> Iniciar sesion</button>
+              <button type="submit" className="btn btn-primary btn-block"><Link to="/login">Iniciar sesion</Link></button>
 
             </form>
 
@@ -48,6 +49,7 @@ render(){
               ¿No tenes cuenta? <Link to="/register">Registrate</Link>
             </p>
 
+          </div>
           </div>
         </div>
 

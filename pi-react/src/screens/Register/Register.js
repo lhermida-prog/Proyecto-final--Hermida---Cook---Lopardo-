@@ -28,7 +28,7 @@ render(){
       <div className="registro-container">
 
         <h2 className="alert alert-primary">Registro</h2>
-        <div className="regi">
+        <div className="row justify-content-center">
           <div className="col-md-6">
 
             <form onSubmit={(e) => this.evitarSubmit(e)}>

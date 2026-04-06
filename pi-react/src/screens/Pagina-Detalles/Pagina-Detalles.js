@@ -1,5 +1,7 @@
 import React,{Component} from "react";
 import "./detalles.css"
+import Header from "../../Components/Header-Footer/Header";
+import Footer from "../../Components/Header-Footer/Footer";
 
 
 class PeliculasDetalles extends Component{
@@ -24,10 +26,12 @@ class PeliculasDetalles extends Component{
         }
 
         return (
-            <section className="detalles">
-                <div className="detalle-img">
-                    <img src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
-                </div>
+            <React.Fragment>
+                <Header/>
+                <section className="detalles">
+                    <div className="detalle-img">
+                        <img src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
+                    </div>
 
                 <div className="detalles-info">
                     <h1>{this.state.pelicula.title}</h1>
@@ -39,6 +43,8 @@ class PeliculasDetalles extends Component{
                     <button>Agregar a Favoritos</button>
                 </div>
             </section>
+            <Footer/>
+            </React.Fragment>
         )
     }
 }
