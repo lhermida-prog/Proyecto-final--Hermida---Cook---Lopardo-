@@ -55,6 +55,7 @@ Vermas = () => {
     render(){
     return (
         <React.Fragment>
+            
         <article className="single-card-movie">
             <img src={`https://image.tmdb.org/t/p/w500${this.props.img}`} className="card-img-top" alt="..."/>
             <div className="cardBody">

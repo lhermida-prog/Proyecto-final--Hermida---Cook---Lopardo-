@@ -1,5 +1,4 @@
 import React from "react";
-import "./Header.css"
 
 function footer (){
     let integrantes = ["Lucas Hermida","Gonzalo Lopardo","Thomas Cook"]
