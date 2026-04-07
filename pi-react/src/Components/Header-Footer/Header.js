@@ -1,17 +1,15 @@
 import React from "react";
-import "../Header-Footer/Header.css"
 import { Link } from "react-router-dom";
-import "../../App.css";
 
 
 function Header() {
     let Etiquetas = [
-      {nombre : "Home", link : "/"},
-      {nombre : "Peliculas" , link : "/peliculas"},
-      {nombre : "Series" , link : "/series"},
-      {nombre : "Favoritas" , link : "/favorites"},
-      {nombre : "Registro" , link : "/register"},
-      {nombre : "Login" , link : "/login"}]
+      {nombre : "Home", link : "/", clase : "nav-link"},
+      {nombre : "Peliculas" , link : "/peliculas" , clase : "nav-link"},
+      {nombre : "Series" , link : "/series", clase : "nav-link"},
+      {nombre : "Favoritas" , link : "/favorites", clase : "nav-link"},
+      {nombre : "Registro" , link : "/register", clase : "nav-link ml-auto"},
+      {nombre : "Login" , link : "/login", clase : "nav-link"}]
 
 
   return (
@@ -21,8 +19,8 @@ function Header() {
         <ul className="nav nav-tabs my-4">
           {Etiquetas.map( item => { 
           return (
-          <li className="nav-item">
-              <a className="nav-link" href = {item.link}> <link to ={item.link}/> {item.nombre}</a> 
+          <li className={item.clase}>
+            <Link className="nav-link" to ={item.link}> {item.nombre}</Link>
           </li>
           )
           })}
