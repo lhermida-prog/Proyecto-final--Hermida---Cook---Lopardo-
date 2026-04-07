@@ -47,7 +47,7 @@ class Series extends Component {
         <section class="row cards all-movies" id="movies">
             {this.state.datos.map((item)=>
                 <article class="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} class="card-img-top" alt="..."/>
+                    <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} class="card-img-top" alt="..."/>
                     <div class="cardBody">
                         <h5 class="card-title">{item.name}</h5>
                         <button className="btn btn-primary" onClick={this.Vermas}>

@@ -28,7 +28,7 @@ class PeliculasDetalles extends Component{
             <React.Fragment>
                 <Header/>
                 <section className="row">
-                    <img className= "col-md-6" src={`https://image.tmdb.org/t/p/w500${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
+                    <img className= "col-md-6" src={`https://image.tmdb.org/t/p/original${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
                     
                 <section class="col-md-6 info">
                     <h3>Descripción</h3>
