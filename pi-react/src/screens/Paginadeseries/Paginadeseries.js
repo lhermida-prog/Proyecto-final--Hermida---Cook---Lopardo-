@@ -9,6 +9,7 @@ class Series extends Component {
     super(props);
     this.state = {
       datos: [], 
+      mostrar : false
 
     }
   }
@@ -24,9 +25,9 @@ class Series extends Component {
 
       .catch(err => console.error(err));
   }
-         Vermas = () => {
+      Vermas = () => {
         this.setState({
-            mostrar : !this.state.mostrar
+          mostrar : !this.state.mostrar
         })
      }
 

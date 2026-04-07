@@ -32,7 +32,7 @@ class SeriesDetalles extends Component{
             <section class="col-md-6 info">
                 <h3>Descripción</h3>
                 <p class="description">{this.state.serie.overview}</p>
-                <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong>{this.state.serie.air_date} </p>
+                <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> {this.state.serie.first_air_date} </p>
                 <p class="mt-0 mb-0" id="episodes"><strong>Número de capítulos:</strong> {this.state.serie.number_of_episodes}</p>
                 <p class="mt-0 seasons"><strong>Temporadas:</strong> {this.state.serie.number_of_seasons}</p>
             </section>
