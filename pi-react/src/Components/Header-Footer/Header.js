@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../App.css";
 
 
 function Header() {
@@ -21,7 +20,7 @@ function Header() {
           {Etiquetas.map( item => { 
           return (
           <li className={item.clase}>
-              <a className="nav-link" href = {item.link}> <link to ={item.link}/> {item.nombre}</a> 
+            <Link className="nav-link" to ={item.link}> {item.nombre}</Link>
           </li>
           )
           })}
