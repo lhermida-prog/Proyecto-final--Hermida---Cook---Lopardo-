@@ -55,8 +55,9 @@ Vermas = () => {
     render(){
     return (
         <React.Fragment>
+
         <article className="single-card-movie">
-            <img src={`https://image.tmdb.org/t/p/w500${this.props.img}`} className="card-img-top" alt="..."/>
+            <img src={`https://image.tmdb.org/t/p/original${this.props.img}`} className="card-img-top" alt={this.props.titulo}/>
             <div className="cardBody">
                 <h5 className="card-title">{this.props.titulo}</h5>
                 <button className="btn btn-primary" onClick={this.Vermas}>
