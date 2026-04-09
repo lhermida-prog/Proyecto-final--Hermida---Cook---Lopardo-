@@ -10,7 +10,6 @@ class Peliculas extends Component {
     super(props);
     this.state = {
       datos: [], 
-
     }
 
   }
