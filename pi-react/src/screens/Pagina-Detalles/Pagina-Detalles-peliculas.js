@@ -1,5 +1,4 @@
 import React,{Component} from "react";
-import "./detalles.css"
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
 
