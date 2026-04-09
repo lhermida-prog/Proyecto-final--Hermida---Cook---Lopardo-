@@ -47,8 +47,8 @@ class Peliculas extends Component {
         <button className="btn btn-info">Cargar más</button>
 
         <section className="row cards all-movies" id="movies">
-            {this.state.datos.map((item)=>
-            <article className="single-card-movie">
+            {this.state.datos.map((item , idx )=>
+            <article key = {item + idx}className="single-card-movie">
                 <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className="card-img-top" alt="..."/>
                 <div className="cardBody">
                     <h5 className="card-title">{item.title}</h5>
