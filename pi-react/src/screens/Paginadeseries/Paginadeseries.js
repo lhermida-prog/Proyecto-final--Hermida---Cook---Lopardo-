@@ -37,19 +37,19 @@ class Series extends Component {
       <React.Fragment>
         <Header/>
 
-         <h2 class="alert alert-primary">Todas las series</h2>
-        <form class="filter-form px-0 mb-3" action="" method="get">
+         <h2 className="alert alert-warning">Todas las series</h2>
+        <form className="filter-form px-0 mb-3" action="" method="get">
             <input type="text" name="filter" id="" placeholder="Buscar dentro de la lista"/>
         </form>
         
-        <button class="btn btn-info">Cargar más</button>
+        <button className="btn btn-info">Cargar más</button>
 
-        <section class="row cards all-movies" id="movies">
+        <section className="row cards all-movies" id="movies">
             {this.state.datos.map((item)=>
-                <article class="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} class="card-img-top" alt="..."/>
-                    <div class="cardBody">
-                        <h5 class="card-title">{item.name}</h5>
+                <article className="single-card-movie">
+                    <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className="card-img-top" alt="..."/>
+                    <div className="cardBody">
+                        <h5 className="card-title">{item.name}</h5>
                         <button className="btn btn-primary" onClick={this.Vermas}>
                             {this.state.mostrar ? "Ver menos" : "Ver más"}
                         </button>
