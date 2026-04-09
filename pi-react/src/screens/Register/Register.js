@@ -20,7 +20,6 @@ event.preventDefault();
 controlarCambios(event){
     this.setState({valor:event.target.name});
 }
-
 render(){
     return(
     <div className="container">
