@@ -8,6 +8,7 @@ import Register from "./screens/Register/Register"
 import Login from "./screens/Login/Login";
 import PaginaPeliculas from "./screens/Paginadepeliculas/Paginadepeliculas"
 import Series from "./screens/Paginadeseries/Paginadeseries";
+import ResultadosBusqueda from "./screens/Resultados-Busqueda/Resultados-Busqueda";
 
 
 
@@ -26,6 +27,8 @@ function App() {
         <Route path = '/series' component = {Series}/>
         <Route path = '/serie/:id' component = {DetallesSeries}/>
         <Route path = '*' component = {Notfound}/>
+        <Route path = '/ResultadosBusqueda/:search/:eleccion' component  = {ResultadosBusqueda}/>
+
       </Switch>
       </BrowserRouter>  
 

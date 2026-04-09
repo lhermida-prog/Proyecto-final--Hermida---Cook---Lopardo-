@@ -19,7 +19,6 @@ class PaginaPeliculas extends Component {
           datos: data.results,
           
         }))
-
       .catch(err => console.error(err));
 
       fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=5819e166bc6813d39312079be7ac67ba")
