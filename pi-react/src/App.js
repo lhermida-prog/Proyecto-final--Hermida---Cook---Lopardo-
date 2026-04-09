@@ -1,6 +1,6 @@
 import React from "react"; 
 import Home from "./screens/Home/Home"
-import { BrowserRouter, Route, Switch, Link} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Notfound from "./screens/Not-Found/Not-Found";
 import Detalles from "./screens/Pagina-Detalles/Pagina-Detalles-peliculas"
 import DetallesSeries from "./screens/Pagina-Detalles/Pagina-Detalles-Series"

@@ -17,9 +17,9 @@ function Header() {
       <h1>UdeSA Movies</h1>
       <nav>
         <ul className="nav nav-tabs my-4">
-          {Etiquetas.map( item => { 
+          {Etiquetas.map( (item , idx) => { 
           return (
-          <li className={item.clase}>
+          <li key ={ item + idx } className={item.clase}>
             <Link className="nav-link" to ={item.link}> {item.nombre}</Link>
           </li>
           )

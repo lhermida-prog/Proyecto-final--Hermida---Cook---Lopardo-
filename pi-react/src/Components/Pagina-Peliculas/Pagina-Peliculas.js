@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Pelicula from "../../Components/Pelicula/Pelicula";
+import Pelicula from "../Pelicula/Pelicula";
 
 class PaginaPeliculas extends Component {
   constructor(props) {
@@ -16,16 +16,16 @@ class PaginaPeliculas extends Component {
       .then(res => res.json())
       .then(data => this.setState(
         {
-          datos: data.results,
+          datos: data.results.slice(0 , 4),
           
         }))
       .catch(err => console.error(err));
 
-      fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=5819e166bc6813d39312079be7ac67ba")
+      fetch("https://api.themoviedb.org/3/tv/airing_today?api_key=5819e166bc6813d39312079be7ac67ba")
       .then(res => res.json())
       .then(data => {this.setState(
         {
-        peliculas_cartel: data.results
+        peliculas_cartel: data.results.slice(0 , 4)
       })})
      .catch(err => console.log(err));
   }
@@ -39,8 +39,7 @@ class PaginaPeliculas extends Component {
           {this.state.datos === "" ? (
             <h3>Cargando...</h3>
           ):(
-            this.state.datos.map(peli => <Pelicula
-            key ={peli.id}
+            this.state.datos.map((peli , idx) => <Pelicula key={peli + idx}
             id ={peli.id}
             lenguaje = {peli.original_language}
             titulo_o = {peli.original_title}
@@ -54,13 +53,12 @@ class PaginaPeliculas extends Component {
             cantidad ={peli.vote_count}/>)
           )}
         </section>
-        <h2 class="alert alert-warning">TV shows airing today</h2>
+        <h2 className="alert alert-warning">TV shows airing today</h2>
         <section className="row cards all-movies" id="movies">
           {this.state.peliculas_cartel === "" ? (
             <h3>Cargando...</h3>
           ):(
-            this.state.peliculas_cartel.map(peli => <Pelicula
-            key ={peli.id}
+            this.state.peliculas_cartel.map((peli , idx) => <Pelicula key={peli + idx}
             id ={peli.id}
             lenguaje = {peli.original_language}
             titulo_o = {peli.original_title}
