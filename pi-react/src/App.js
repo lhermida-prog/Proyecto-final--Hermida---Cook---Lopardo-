@@ -26,8 +26,8 @@ function App() {
         <Route path = '/peliculas' component = {PaginaPeliculas}/>
         <Route path = '/series' component = {Series}/>
         <Route path = '/serie/:id' component = {DetallesSeries}/>
-        <Route path = '*' component = {Notfound}/>
         <Route path = '/ResultadosBusqueda/:search/:eleccion' component  = {ResultadosBusqueda}/>
+        <Route path = '*' component = {Notfound}/>
 
       </Switch>
       </BrowserRouter>  

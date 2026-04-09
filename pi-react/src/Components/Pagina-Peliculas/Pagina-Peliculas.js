@@ -39,8 +39,10 @@ class PaginaPeliculas extends Component {
           {this.state.datos === "" ? (
             <h3>Cargando...</h3>
           ):(
-            this.state.datos.map((peli , idx) => <Pelicula key={peli + idx}
+            this.state.datos.map((peli , idx) => <Pelicula 
+            key={peli + idx}
             id ={peli.id}
+            tipo = "pelicula"
             lenguaje = {peli.original_language}
             titulo_o = {peli.original_title}
             descripcion ={peli.overview}
@@ -58,8 +60,10 @@ class PaginaPeliculas extends Component {
           {this.state.peliculas_cartel === "" ? (
             <h3>Cargando...</h3>
           ):(
-            this.state.peliculas_cartel.map((peli , idx) => <Pelicula key={peli + idx}
+            this.state.peliculas_cartel.map((peli , idx) => <Pelicula 
+            key={peli + idx}
             id ={peli.id}
+            tipo = "serie"
             lenguaje = {peli.original_language}
             titulo_o = {peli.original_title}
             descripcion ={peli.overview}
@@ -67,7 +71,6 @@ class PaginaPeliculas extends Component {
             img ={peli.poster_path}
             fecha ={peli.release_date}
             titulo ={peli.title}
-            video ={peli.video}
             promedio ={peli.vote_average}
             cantidad ={peli.vote_count}/>)
           )}
