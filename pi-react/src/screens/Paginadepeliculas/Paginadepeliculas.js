@@ -10,7 +10,9 @@ class Peliculas extends Component {
     super(props);
     this.state = {
       datos: [], 
-      mostrar : false
+      mostrar : false,
+      mostrar2 : false, 
+
     }
 
   }
@@ -24,12 +26,52 @@ class Peliculas extends Component {
           
         }))
 
+
       .catch(err => console.error(err));
+
   }
+  agregarFav(id) {
+
+        let storage = localStorage.getItem("favoritos")
+        storage = JSON.parse(storage)
+
+        if (storage !== null) {
+            storage.push(id)
+            console.log(storage);
+            let storageString = JSON.stringify(storage)
+            localStorage.setItem("favoritos", storageString)
+
+            this.setState({
+                mostrar: false
+            })
+        }
+        else {
+            let primerFav = [id]
+
+            let storageString = JSON.stringify(primerFav)
+            localStorage.setItem("favoritos", storageString)
+
+            this.setState({
+                mostrar: false
+            })
+        }
+    }
+    sacarFav(id) {
+        let storage = localStorage.getItem("favoritos")
+        storage = JSON.parse(storage)
+
+        let storageFiltrado = storage.filter((unId) => unId !== id)
+        let storageString = JSON.stringify(storageFiltrado)
+        localStorage.setItem("favoritos", storageString)
+
+        this.setState({
+            mostrar: true
+        })
+    }
 
     Vermas = () => {
         this.setState({
-            mostrar : !this.state.mostrar
+            mostrar2 : !this.state.mostrar2
         })
     }
 
@@ -52,12 +94,13 @@ class Peliculas extends Component {
                 <div className="cardBody">
                     <h5 className="card-title">{item.title}</h5>
                     <button className="btn btn-primary" onClick={this.Vermas}>
-                        {this.state.mostrar ? "Ver menos" : "Ver más"}
+                        {this.state.mostrar2 ? "Ver menos" : "Ver más"}
                     </button>
-                    <p className={`card-text ${this.state.mostrar ? "show" : "hide" }`}>{item.overview}</p>
+                    <p className={`card-text ${this.state.mostrar2 ? "show" : "hide" }`}>{item.overview}</p>
                     <Link to = {`/pelicula/${item.id}`}>Ir a detalle</Link>
-                    <button onClick={() => this.Agregarfavorito(item.id)} className="Boton">Agregar a Favoritos</button>
-                    <button onClick={() => this.Sacarfavorito(item.id)} className="Boton">Sacar de Favoritos</button>  
+                    <button onClick={() => this.state.mostrar ? this.agregarFav(item.id) : this.sacarFav(item.id)}>
+                        {this.state.mostrar ? "Agregar a favoritos" : "Sacar de favoritos"}
+                    </button> 
                 </div>
             </article>)}
         </section>

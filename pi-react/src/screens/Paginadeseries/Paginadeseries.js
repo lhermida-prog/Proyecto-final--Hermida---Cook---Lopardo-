@@ -8,8 +8,8 @@ class Series extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      datos: [], 
-      mostrar : false
+      datos: [],
+      mostrar: false
 
     }
   }
@@ -20,48 +20,88 @@ class Series extends Component {
       .then(data => this.setState(
         {
           datos: data.results,
-          
+
         }))
 
       .catch(err => console.error(err));
   }
-      Vermas = () => {
-        this.setState({
-          mostrar : !this.state.mostrar
-        })
-     }
+  agregarFav(id) {
+
+    let storage = localStorage.getItem("favoritos")
+    storage = JSON.parse(storage)
+
+    if (storage !== null) {
+      storage.push(id)
+      console.log(storage);
+      let storageString = JSON.stringify(storage)
+      localStorage.setItem("favoritos", storageString)
+
+      this.setState({
+        mostrar: false
+      })
+    }
+    else {
+      let primerFav = [id]
+
+      let storageString = JSON.stringify(primerFav)
+      localStorage.setItem("favoritos", storageString)
+
+      this.setState({
+        mostrar: false
+      })
+    }
+  }
+  sacarFav(id) {
+    let storage = localStorage.getItem("favoritos")
+    storage = JSON.parse(storage)
+
+    let storageFiltrado = storage.filter((unId) => unId !== id)
+    let storageString = JSON.stringify(storageFiltrado)
+    localStorage.setItem("favoritos", storageString)
+
+    this.setState({
+      mostrar: true
+    })
+  }
+  Vermas = () => {
+    this.setState({
+      mostrar: !this.state.mostrar
+    })
+  }
 
 
   render() {
     return (
       <React.Fragment>
-        <Header/>
+        <Header />
 
-         <h2 className="alert alert-warning">Todas las series</h2>
+        <h2 className="alert alert-warning">Todas las series</h2>
         <form className="filter-form px-0 mb-3" action="" method="get">
-            <input type="text" name="filter" id="" placeholder="Buscar dentro de la lista"/>
+          <input type="text" name="filter" id="" placeholder="Buscar dentro de la lista" />
         </form>
-        
+
         <button className="btn btn-info">Cargar más</button>
 
         <section className="row cards all-movies" id="movies">
-            {this.state.datos.map((item , idx)=>
-                <article key = {item + idx}className="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className="card-img-top" alt="..."/>
-                    <div className="cardBody">
-                        <h5 className="card-title">{item.name}</h5>
-                        <button className="btn btn-primary" onClick={this.Vermas}>
-                            {this.state.mostrar ? "Ver menos" : "Ver más"}
-                        </button>
-                        <p className={`card-text ${this.state.mostrar ? "show" : "hide" }`}>{item.overview}</p>
-                        <Link to = {`/serie/${item.id}`}>Ir a detalle</Link>
-                        <button onClick={() => this.Agregarfavorito(item.id)} className="Boton">Agregar a Favoritos</button>
-                    <button onClick={() => this.Sacarfavorito(item.id)} className="Boton">Sacar de Favoritos</button>  
-                </div>
+          {this.state.datos.map((item, idx) =>
+            <article key={item + idx} className="single-card-movie">
+              <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className="card-img-top" alt="..." />
+              <div className="cardBody">
+                <h5 className="card-title">{item.name}</h5>
+                <button className="btn btn-primary" onClick={this.Vermas}>
+                  {this.state.mostrar ? "Ver menos" : "Ver más"}
+                </button>
+                
+                <p className={`card-text ${this.state.mostrar ? "show" : "hide"}`}>{item.overview}</p>
+                <Link to={`/serie/${item.id}`}>Ir a detalle</Link>
+                <button onClick={() => this.state.mostrar ? this.agregarFav(this.state.datos.id) : this.sacarFav(this.state.datos.id)}>
+                  {this.state.mostrar ? "Agregar a favoritos" : "Sacar de favoritos"}
+                </button>
+              </div>
             </article>
-        )}
+          )}
         </section>
-        <Footer/>
+        <Footer />
       </React.Fragment>
     )
   }
