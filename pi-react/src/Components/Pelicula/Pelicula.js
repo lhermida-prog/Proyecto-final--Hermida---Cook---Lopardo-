@@ -64,9 +64,9 @@ verMas ()  {
                     {this.state.mostrar ? "Ver menos" : "Ver más"}
                 </button>
                 <p className={`card-text ${this.state.mostrar ? "show" : "hide" }`}>{this.props.descripcion}</p>
-                <Link to = {`/${this.props.tipo}/${this.props.id}`}>Ir a detalle</Link>
                 <button onClick={() => this.Agregarfavorito(this.props.id)} className="Boton">Agregar a Favoritos</button>
                 <button onClick={() => this.Sacarfavorito(this.props.id)} className="Boton">Sacar de Favoritos</button>  
+                <Link to = {`/${this.props.tipo}/${this.props.id}`}>Ir a detalle</Link>
             </div>
         </article>
         </React.Fragment>

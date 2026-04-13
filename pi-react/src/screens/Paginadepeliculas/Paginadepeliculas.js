@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import "./pagina.css"
+import Buscador from '../../Components/Buscador/Buscador';
 import Header from "../../Components/Header-Footer/Header"
 import Footer from "../../Components/Header-Footer/Footer"
+import Peliculas from '../../Components/Series y Pelicula/Peliculas';
 
 
-class Peliculas extends Component {
+class PaginaPeliculas extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datos: [], 
-      mostrar : false,
-      mostrar2 : false, 
-
     }
 
   }
@@ -24,85 +22,34 @@ class Peliculas extends Component {
         {
           datos: data.results
           
-        }))
-
-
-      .catch(err => console.error(err));
+        })).catch(err => console.error(err));
 
   }
-  agregarFav(id) {
-
-        let storage = localStorage.getItem("favoritos")
-        storage = JSON.parse(storage)
-
-        if (storage !== null) {
-            storage.push(id)
-            console.log(storage);
-            let storageString = JSON.stringify(storage)
-            localStorage.setItem("favoritos", storageString)
-
-            this.setState({
-                mostrar: false
-            })
-        }
-        else {
-            let primerFav = [id]
-
-            let storageString = JSON.stringify(primerFav)
-            localStorage.setItem("favoritos", storageString)
-
-            this.setState({
-                mostrar: false
-            })
-        }
-    }
-    sacarFav(id) {
-        let storage = localStorage.getItem("favoritos")
-        storage = JSON.parse(storage)
-
-        let storageFiltrado = storage.filter((unId) => unId !== id)
-        let storageString = JSON.stringify(storageFiltrado)
-        localStorage.setItem("favoritos", storageString)
-
-        this.setState({
-            mostrar: true
-        })
-    }
-
-    Vermas = () => {
-        this.setState({
-            mostrar2 : !this.state.mostrar2
-        })
-    }
-
-
   render() {
     return (
       <React.Fragment>
         <Header/>
+        <Buscador/>
          <h2 className="alert alert-primary">Todas las películas</h2>
-        <form className="filter-form px-0 mb-3" action="" method="get">
-            <input type="text" name="filter" id="" placeholder="Buscar dentro de la lista"/>
-        </form>
-        
         <button className="btn btn-info">Cargar más</button>
-
         <section className="row cards all-movies" id="movies">
-            {this.state.datos.map((item , idx )=>
-            <article key = {item + idx}className="single-card-movie">
-                <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`} className="card-img-top" alt="..."/>
-                <div className="cardBody">
-                    <h5 className="card-title">{item.title}</h5>
-                    <button className="btn btn-primary" onClick={this.Vermas}>
-                        {this.state.mostrar2 ? "Ver menos" : "Ver más"}
-                    </button>
-                    <p className={`card-text ${this.state.mostrar2 ? "show" : "hide" }`}>{item.overview}</p>
-                    <Link to = {`/pelicula/${item.id}`}>Ir a detalle</Link>
-                    <button onClick={() => this.state.mostrar ? this.agregarFav(item.id) : this.sacarFav(item.id)}>
-                        {this.state.mostrar ? "Agregar a favoritos" : "Sacar de favoritos"}
-                    </button> 
-                </div>
-            </article>)}
+            {this.state.datos === "" ? (
+                <h3>Cargando...</h3>
+            ):(
+                this.state.datos.map((pelicula , idx) => <Peliculas
+                key={pelicula + idx}
+                id ={pelicula.id}
+                tipo ="Película"
+                lenguaje={pelicula.original_language}
+                titulo_0={pelicula.original_title}
+                descripcion={pelicula.overview}
+                popularidad={pelicula.popularity}
+                img={pelicula.poster_path}
+                fecha={pelicula.release_date}
+                titulo={pelicula.title}
+                promedio={pelicula.vote_average}
+                cantidad={pelicula.vote_count}/>)
+            )}
         </section>
         <Footer/>
       </React.Fragment>
@@ -110,4 +57,4 @@ class Peliculas extends Component {
   }
 }
 
-export default Peliculas
+export default PaginaPeliculas

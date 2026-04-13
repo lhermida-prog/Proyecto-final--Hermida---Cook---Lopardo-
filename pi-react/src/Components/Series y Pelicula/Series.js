@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import "./peliculas.css"
 
 class Series extends Component {
     constructor(props) {
@@ -60,13 +61,12 @@ class Series extends Component {
                                 {this.state.mostrar ? "Ver menos" : "Ver más"}
                             </button>
                             <p className={`card-text ${this.state.mostrar ? "show" : "hide"}`}>{this.props.descripcion}</p>
-                            <Link to={`/${this.props.tipo}/${this.props.id}`}>Ir a detalle</Link>
                             <button className="Boton" onClick={() => this.state.estado
                                 ? this.Sacarfavorito(this.props.id)
-                                : this.Agregarfavorito(this.props.id)}
-                            >
+                                : this.Agregarfavorito(this.props.id)}>
                                 {this.state.estado ? "Sacar de favoritos" : "Agregar a favoritos"}
                             </button>
+                            <Link to={`/${this.props.tipo}/${this.props.id}`}>Ir a detalle</Link>
                         </div>
                     </article>
                 </React.Fragment>

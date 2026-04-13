@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
 import Buscador from "../../Components/Buscador/Buscador";
-import Series from "../../Components/Series/Series";
+import Series from "../../Components/Series y Pelicula/Series";
 import "./paginaseries.css"
 
 
@@ -31,7 +31,7 @@ class PaginaSeries extends Component {
           <Buscador />
           <h2 className="alert alert-warning">Todas las series</h2>
           <section className="row cards all-series">
-            {this.state.datos == "" ? (
+            {this.state.datos === "" ? (
               <h3>Cargando...</h3>
             ) : (
               this.state.datos.map((serie, idx) => <Series
