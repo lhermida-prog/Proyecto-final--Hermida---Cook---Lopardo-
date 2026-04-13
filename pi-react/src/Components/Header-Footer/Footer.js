@@ -1,6 +1,6 @@
 import React from "react";
 
-function footer (){
+function Footer (){
     let integrantes = ["Lucas Hermida","Gonzalo Lopardo","Thomas Cook"]
     return(
         <footer className="alert alert-primary mt-4 text-center">
@@ -13,4 +13,4 @@ function footer (){
         )}
 
 
-export default footer
+export default Footer

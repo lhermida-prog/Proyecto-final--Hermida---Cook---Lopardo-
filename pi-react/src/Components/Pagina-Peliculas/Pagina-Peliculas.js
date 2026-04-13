@@ -16,6 +16,7 @@ class PaginaPeliculas extends Component {
       .then(res => res.json())
       .then(data => this.setState(
         {
+          
           datos: data.results.slice(0 , 4),
           
         }))
@@ -25,7 +26,9 @@ class PaginaPeliculas extends Component {
       .then(res => res.json())
       .then(data => {this.setState(
         {
+
         peliculas_cartel: data.results.slice(0 , 4)
+
       })})
      .catch(err => console.log(err));
   }

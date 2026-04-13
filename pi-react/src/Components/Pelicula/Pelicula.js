@@ -46,7 +46,7 @@ Sacarfavorito(id){
     this.setState({estado:true})
 }
 
-Vermas = () => {
+verMas ()  {
     this.setState({
         mostrar : !this.state.mostrar
     })
@@ -60,7 +60,7 @@ Vermas = () => {
             <img src={`https://image.tmdb.org/t/p/original${this.props.img}`} className="card-img-top" alt={this.props.titulo}/>
             <div className="cardBody">
                 <h5 className="card-title">{this.props.titulo}</h5>
-                <button className="btn btn-primary" onClick={this.Vermas}>
+                <button className="btn btn-primary" onClick={() => this.verMas()}>
                     {this.state.mostrar ? "Ver menos" : "Ver más"}
                 </button>
                 <p className={`card-text ${this.state.mostrar ? "show" : "hide" }`}>{this.props.descripcion}</p>
