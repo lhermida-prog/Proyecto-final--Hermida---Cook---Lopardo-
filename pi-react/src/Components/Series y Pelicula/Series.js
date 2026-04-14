@@ -12,32 +12,32 @@ class Series extends Component {
 
     }
     Agregarfavorito(id) {
-        let storage = localStorage.getItem("fav-peliculas")
+        let storage = localStorage.getItem("favoritos")
         let storageparseado = JSON.parse(storage)
 
         if (storageparseado === null) {
             let primervalor = [id]
             let valorstring = JSON.stringify(primervalor)
-            localStorage.setItem("fav-peliculas", valorstring)
+            localStorage.setItem("favoritos", valorstring)
         }
         else {
               if (!storageparseado.includes(id)) {
                 storageparseado.push(id)
                 let storagestring = JSON.stringify(storageparseado)
-                localStorage.setItem("fav-peliculas", storagestring)
+                localStorage.setItem("favoritos", storagestring)
               }
             }
               this.setState({ estado: true })
         }
 
         Sacarfavorito(id) {
-            let storage = localStorage.getItem("fav-peliculas")
+            let storage = localStorage.getItem("favoritos")
             let storageparseado = JSON.parse(storage)
 
             if (storageparseado !== null) {
                 let filtrado = storageparseado.filter((unId) => unId !== id)
                 let storagestring = JSON.stringify(filtrado)
-                localStorage.setItem("fav-peliculas", storagestring)
+                localStorage.setItem("favoritos", storagestring)
             }
 
             this.setState({ estado: false })
@@ -66,7 +66,7 @@ class Series extends Component {
                                 : this.Agregarfavorito(this.props.id)}>
                                 {this.state.estado ? "Sacar de favoritos" : "Agregar a favoritos"}
                             </button>
-                            <Link to={`/${this.props.tipo}/${this.props.id}`}>Ir a detalle</Link>
+                            <Link to={`/serie/${this.props.id}`}>Ir a detalle</Link>
                         </div>
                     </article>
                 </React.Fragment>

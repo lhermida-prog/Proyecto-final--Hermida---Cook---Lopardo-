@@ -13,35 +13,35 @@ class Pelicula extends Component{
 
     }
     Agregarfavorito(id){ 
-    let storage = localStorage.getItem("fav-peliculas")
+    let storage = localStorage.getItem("favoritos")
     let storageparseado = JSON.parse (storage)
 
     if (storageparseado == null){
         let primervalor =[id]
         let valorstring = JSON.stringify (primervalor)
-        localStorage.setItem("fav-peliculas",valorstring)
+        localStorage.setItem("favoritos",valorstring)
     }
     else{
         storageparseado.push(id)
         let storagestring = JSON.stringify(storageparseado)
-        localStorage.setItem("fav-peliculas",storagestring)
+        localStorage.setItem("favoritos",storagestring)
     }
     this.setState({estado:true})
 }
 
 Sacarfavorito(id){ 
-    let storage = localStorage.getItem("favno-peliculas")
+    let storage = localStorage.getItem("favoritos")
     let storageparseado = JSON.parse (storage)
     
     if (storageparseado == null){
         let primervalor =[id]
         let valorstring = JSON.stringify (primervalor)
-        localStorage.setItem("fav-peliculas",valorstring)
+        localStorage.setItem("favoritos",valorstring)
     }
     else{
         storageparseado.filter(id)
         let storagestring = JSON.stringify(storageparseado)
-        localStorage.setItem("favno-peliculas",storagestring)
+        localStorage.setItem("favoritos",storagestring)
     }
     this.setState({estado:true})
 }

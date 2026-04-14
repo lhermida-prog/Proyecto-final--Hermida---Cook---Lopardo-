@@ -9,6 +9,7 @@ import Login from "./screens/Login/Login";
 import PaginaPeliculas from "./screens/Paginadepeliculas/Paginadepeliculas"
 import Series from "./screens/Paginadeseries/Paginadeseries";
 import ResultadosBusqueda from "./screens/Resultados-Busqueda/Resultados-Busqueda";
+import Favoritos from "./screens/Pagina-Favoritos/Pagina-Favoritos"
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path = '/peliculas' component = {PaginaPeliculas}/>
         <Route path = '/series' component = {Series}/>
         <Route path = '/serie/:id' component = {DetallesSeries}/>
+        <Route path = '/favorites' component = {Favoritos}/>
         <Route path = '/ResultadosBusqueda/:search/:eleccion' component  = {ResultadosBusqueda}/>
         <Route path = '*' component = {Notfound}/>
 

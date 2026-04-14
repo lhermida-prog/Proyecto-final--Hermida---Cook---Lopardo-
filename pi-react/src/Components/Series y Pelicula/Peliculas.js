@@ -12,19 +12,19 @@ class Peliculas extends Component {
     }
     agregarFav(id) {
 
-        let storage = localStorage.getItem("favoritos2")
+        let storage = localStorage.getItem("favoritos")
         storage = JSON.parse(storage)
 
         if (storage === null) {
             let primerValor = [id]
             let valorString = JSON.stringify(primerValor)
-            localStorage.setItem("favoritos2", valorString)
+            localStorage.setItem("favoritos", valorString)
         }
         else {
             if (!storage.includes(id)) {
                 storage.push(id)
                 let storageString = JSON.stringify(storage)
-                localStorage.setItem("favoritos2", storageString)
+                localStorage.setItem("favoritos", storageString)
             }
             this.setState({
                 estado: true
@@ -32,13 +32,13 @@ class Peliculas extends Component {
         }
     }
     sacarFav(id) {
-        let storage = localStorage.getItem("favoritos2")
+        let storage = localStorage.getItem("favoritos")
         storage = JSON.parse(storage)
 
         if (storage !== null) {
             let storageFiltrado = storage.filter((unId) => unId !== id)
             let storageString = JSON.stringify(storageFiltrado)
-            localStorage.setItem("favoritos2", storageString)
+            localStorage.setItem("favoritos", storageString)
         }
         this.setState({
             estado: false
@@ -65,7 +65,7 @@ class Peliculas extends Component {
                             : this.agregarFav(this.props.id)}>
                             {this.state.estado ? "Sacar de favoritos" : "Agregar a favoritos"}
                         </button>
-                        <Link to={`/${this.props.tipo}/${this.props.id}`}>Ir a detalle</Link>
+                        <Link to={`/pelicula/${this.props.id}`}>Ir a detalle</Link>
                     </div>
                 </article>
             </React.Fragment>
