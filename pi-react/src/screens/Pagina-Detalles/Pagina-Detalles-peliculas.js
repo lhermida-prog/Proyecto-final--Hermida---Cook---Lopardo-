@@ -34,12 +34,14 @@ class PeliculasDetalles extends Component {
 
         let storage = localStorage.getItem("favoritos")
         storage = JSON.parse(storage)
+       
 
         if (storage !== null) {
             storage.push(id)
             console.log(storage);
             let storageString = JSON.stringify(storage)
             localStorage.setItem("favoritos", storageString)
+            
 
             this.setState({
                 mostrar: false

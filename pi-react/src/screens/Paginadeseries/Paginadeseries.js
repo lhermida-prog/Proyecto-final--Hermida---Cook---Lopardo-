@@ -20,6 +20,7 @@ class PaginaSeries extends Component {
         this.setState({
           datos: data.results,
         })
+        
       })
       .catch((err) => console.log(err))
   }
