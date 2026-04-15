@@ -85,6 +85,14 @@ nav {
     width: 15%;
 }
 
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
 @media(min-width: 765px){
     nav {
         grid-template-columns: 1fr;
