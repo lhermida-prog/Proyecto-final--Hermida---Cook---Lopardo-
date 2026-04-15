@@ -12,19 +12,19 @@ class Peliculas extends Component {
     }
     agregarFav(id) {
 
-        let storage = localStorage.getItem("favoritos")
+        let storage = localStorage.getItem("favoritos-peliculas")
         storage = JSON.parse(storage)
 
         if (storage === null) {
             let primerValor = [id]
             let valorString = JSON.stringify(primerValor)
-            localStorage.setItem("favoritos", valorString)
+            localStorage.setItem("favoritos-peliculas", valorString)
         }
         else {
             if (!storage.includes(id)) {
                 storage.push(id)
                 let storageString = JSON.stringify(storage)
-                localStorage.setItem("favoritos", storageString)
+                localStorage.setItem("favoritos-peliculas", storageString)
             }
             this.setState({
                 estado: true
@@ -32,13 +32,13 @@ class Peliculas extends Component {
         }
     }
     sacarFav(id) {
-        let storage = localStorage.getItem("favoritos")
+        let storage = localStorage.getItem("favoritos-peliculas")
         storage = JSON.parse(storage)
 
         if (storage !== null) {
             let storageFiltrado = storage.filter((unId) => unId !== id)
             let storageString = JSON.stringify(storageFiltrado)
-            localStorage.setItem("favoritos", storageString)
+            localStorage.setItem("favoritos-peliculas", storageString)
         }
         this.setState({
             estado: false

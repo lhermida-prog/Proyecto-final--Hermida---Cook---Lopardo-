@@ -15,39 +15,85 @@ class Favoritos extends Component{
 
 
     componentDidMount(){
-        let id = localStorage.getItem("favoritos")
-        let idparseado = JSON.parse(id)
-        idparseado.map((id)=> 
-         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
+        let id1 = localStorage.getItem("favoritos-peliculas")
+        let idpelicula;
+
+         if (id1 !== null) {
+            idpelicula = JSON.parse(id1);
+        } else {
+            idpelicula = [];
+        }
+        idpelicula.map((id) =>
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
             .then(res => res.json())
-            .then(data => this.setState({informacionPeliculas : data}))
+            .then(data => {
+                let peliculas = this.state.informacionPeliculas;
+                peliculas.push(data);
+
+                this.setState({
+                    informacionPeliculas: peliculas
+                });
+            })
             .catch(err => console.error(err))
-        )
+    )
+        
+        let id2 = localStorage.getItem("favoritos-series")
+        let idserie;
+
+        if (id2 !== null) {
+            idserie = JSON.parse(id2);
+        } else {
+            idserie = [];
+        }
+        idserie.map((id)=> 
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
+            .then(res => res.json())
+            .then(data => {
+                let series = this.state.informacionSeries;
+                series.push(data);
+
+                this.setState({
+                    informacionSeries: series
+                });
+            })
+            .catch(err => console.error(err))
+    )
     
     }
 
     render(){
-        if (this.state.informacionPeliculas.length === 0 || this.state.informacionPeliculas === null){
-            return <h3>No hay Peliculas favoritas aun</h3>
-        }
         return(
             <React.Fragment>
                 <Header/>
-                <h2 class="alert alert-primary">Películas favoritas</h2>
+                <h2 className="alert alert-primary">Películas favoritas</h2>
                 {this.state.informacionPeliculas.map((data)=> 
-                <section class="row cards" id="movies">
-                    <article class="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} class="card-img-top" alt={`${data.name}`}/>
-                    <div class="cardBody">
-                    <h5 class="card-title">{`${data.title}`}</h5>
-                    <p class="card-text">{`${data.overview}`}</p>
-                    <a href="movie.html" class="btn btn-primary">Ver más</a>
-                    <a href="" class="btn alert-info">♥️</a>
+                <section className="row cards" id="movies">
+                    <article className="single-card-movie">
+                    <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} className="card-img-top" alt={`${data.name}`}/>
+                    <div className="cardBody">
+                    <h5 className="card-title">{`${data.title}`}</h5>
+                    <p className="card-text">{`${data.overview}`}</p>
+                    <Link to = {`/pelicula/${data.id}`}>Ir a detalle</Link>
                 </div>
                     </article>
                 </section>
-                
                 )}
+                <h2 className="alert alert-warning">Series favoritas</h2>
+                {this.state.informacionSeries.map((data)=>
+                <section className="row cards" id="tv-show">
+                <article className="single-card-tv">
+                <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} className="card-img-top" alt={`${data.name}`}/>
+                <div className="cardBody">
+                    <h5 className="card-title">{`${data.name}`}</h5>
+                    <p className="card-text">{`${data.overview}`}</p>
+                    <Link to = {`/serie/${data.id}`}>Ir a detalle</Link>
+                    <a href="" className="btn alert-warning">♥️</a>
+                </div>
+                </article>
+                </section>
+                )}
+
+                
                 <Footer/>
             </React.Fragment>
         )

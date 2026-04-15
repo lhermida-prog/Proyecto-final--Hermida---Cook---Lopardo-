@@ -12,32 +12,32 @@ class Series extends Component {
 
     }
     Agregarfavorito(id) {
-        let storage = localStorage.getItem("favoritos")
+        let storage = localStorage.getItem("favoritos-series")
         let storageparseado = JSON.parse(storage)
 
         if (storageparseado === null) {
             let primervalor = [id]
             let valorstring = JSON.stringify(primervalor)
-            localStorage.setItem("favoritos", valorstring)
+            localStorage.setItem("favoritos-series", valorstring)
         }
         else {
               if (!storageparseado.includes(id)) {
                 storageparseado.push(id)
                 let storagestring = JSON.stringify(storageparseado)
-                localStorage.setItem("favoritos", storagestring)
+                localStorage.setItem("favoritos-series", storagestring)
               }
             }
               this.setState({ estado: true })
         }
 
         Sacarfavorito(id) {
-            let storage = localStorage.getItem("favoritos")
+            let storage = localStorage.getItem("favoritos-series")
             let storageparseado = JSON.parse(storage)
 
             if (storageparseado !== null) {
                 let filtrado = storageparseado.filter((unId) => unId !== id)
                 let storagestring = JSON.stringify(filtrado)
-                localStorage.setItem("favoritos", storagestring)
+                localStorage.setItem("favoritos-series", storagestring)
             }
 
             this.setState({ estado: false })
