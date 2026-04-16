@@ -3,7 +3,7 @@ import "./pagina.css"
 import Buscador from '../../Components/Buscador/Buscador';
 import Header from "../../Components/Header-Footer/Header"
 import Footer from "../../Components/Header-Footer/Footer"
-import Peliculas from '../../Components/Series y Pelicula/Peliculas';
+import Peliculas from '../../Components/Series y Pelicula/Card-Peliculas';
 
 
 class PaginaPeliculas extends Component {
