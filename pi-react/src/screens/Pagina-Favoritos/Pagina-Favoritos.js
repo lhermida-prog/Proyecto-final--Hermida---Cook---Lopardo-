@@ -69,7 +69,11 @@ class Favoritos extends Component{
 
     render(){
         console.log(this.state.informacionPeliculas);
-        
+
+        if(this.state.informacionPeliculas.length === 0 && this.state.informacionSeries.length === 0){
+            return <h3>No hay agregados a favoritos aún</h3>
+        }
+
         return(
             <React.Fragment>
                 <Header/>
