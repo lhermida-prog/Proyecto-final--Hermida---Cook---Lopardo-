@@ -36,10 +36,7 @@ render(){
     return(
     <div className="container">
     <FormLogin/>
-
-        
-
-      </div>
+    </div>
     )
 }}
 

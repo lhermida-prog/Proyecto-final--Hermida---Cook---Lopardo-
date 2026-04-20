@@ -32,8 +32,7 @@ function App() {
         <Route path = '/series' component = {Series}/>
         <Route path = '/serie/:id' component = {DetallesSeries}/>
         <Route path = '/favorites' component = {Favoritos}/>
-        <Route path = '/ResultadosBusqueda/:search/:eleccion' component  = {ResultadosBusqueda}/>
-       
+        <Route path="/ResultadosBusqueda/:eleccion/:valor" component={ResultadosBusqueda} />
         <Route path = '*' component = {Notfound}/>
 
       </Switch>
