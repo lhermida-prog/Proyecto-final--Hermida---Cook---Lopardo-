@@ -27,7 +27,6 @@ class PaginaSeries extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container">
           <Header />
           <Buscador />
           <h2 className="alert alert-warning">Todas las series</h2>
@@ -51,7 +50,6 @@ class PaginaSeries extends Component {
                 cantidad={serie.vote_count} />)
             )}
           </section>
-        </div>
         <Footer />
       </React.Fragment>
     )
