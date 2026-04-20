@@ -2,7 +2,7 @@ import React from "react";
 import Header from '../../Components/Header-Footer/Header';
 import Footer from '../../Components/Header-Footer/Footer';
 import Buscador from '../../Components/Buscador/Buscador';
-import PaginaPeliculas from '../../Components/Pagina-Peliculas/Pagina-Peliculas';
+import PaginaPeliculas from '../../Components/Secciones/Secciones';
 import '../../App.css';
 
 
@@ -14,6 +14,7 @@ function Home() {
         <Buscador/>
         <section className="rowcards" id="movies">
         <PaginaPeliculas/>
+
         </section> 
         <Footer/>
       </div>

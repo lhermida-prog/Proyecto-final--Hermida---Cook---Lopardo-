@@ -2,6 +2,8 @@ import React,{Component} from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer"
 import { Link } from "react-router-dom";
+import Peliculas from "../../Components/Series y Pelicula/Card-Peliculas";
+import Series from "../../Components/Series y Pelicula/Card-Series";
 
 class Favoritos extends Component{
     constructor(props){
@@ -23,11 +25,14 @@ class Favoritos extends Component{
         } else {
             idpelicula = [];
         }
+
+
+        let peliculas = []
         idpelicula.map((id) =>
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
             .then(res => res.json())
             .then(data => {
-                let peliculas = this.state.informacionPeliculas;
+    
                 peliculas.push(data);
 
                 this.setState({
@@ -45,11 +50,12 @@ class Favoritos extends Component{
         } else {
             idserie = [];
         }
+        let series = []
         idserie.map((id)=> 
         fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
             .then(res => res.json())
             .then(data => {
-                let series = this.state.informacionSeries;
+                
                 series.push(data);
 
                 this.setState({
@@ -62,38 +68,51 @@ class Favoritos extends Component{
     }
 
     render(){
+        console.log(this.state.informacionPeliculas);
+
+        if(this.state.informacionPeliculas.length === 0 && this.state.informacionSeries.length === 0){
+            return <h3>No hay agregados a favoritos aún</h3>
+        }
+
         return(
             <React.Fragment>
                 <Header/>
                 <h2 className="alert alert-primary">Películas favoritas</h2>
-                {this.state.informacionPeliculas.map((data)=> 
-                <section className="row cards" id="movies">
-                    <article className="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} className="card-img-top" alt={`${data.name}`}/>
-                    <div className="cardBody">
-                    <h5 className="card-title">{`${data.title}`}</h5>
-                    <p className="card-text">{`${data.overview}`}</p>
-                    <Link to = {`/pelicula/${data.id}`}>Ir a detalle</Link>
-                </div>
-                    </article>
-                </section>
+                <section class="row cards" id="movies">
+                {this.state.informacionPeliculas.map((pelicula , idx)=> 
+                <Peliculas
+                key={pelicula + idx}
+                id ={pelicula.id}
+                tipo ="Película"
+                lenguaje={pelicula.original_language}
+                titulo_0={pelicula.original_title}
+                descripcion={pelicula.overview}
+                popularidad={pelicula.popularity}
+                img={pelicula.poster_path}
+                fecha={pelicula.release_date}
+                titulo={pelicula.title}
+                promedio={pelicula.vote_average}
+                cantidad={pelicula.vote_count}/>
                 )}
+                </section>
                 <h2 className="alert alert-warning">Series favoritas</h2>
-                {this.state.informacionSeries.map((data)=>
-                <section className="row cards" id="tv-show">
-                <article className="single-card-tv">
-                <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} className="card-img-top" alt={`${data.name}`}/>
-                <div className="cardBody">
-                    <h5 className="card-title">{`${data.name}`}</h5>
-                    <p className="card-text">{`${data.overview}`}</p>
-                    <Link to = {`/serie/${data.id}`}>Ir a detalle</Link>
-                    <a href="" className="btn alert-warning">♥️</a>
-                </div>
-                </article>
-                </section>
+                <section class="row cards" id="tv-show">
+                {this.state.informacionSeries.map((serie , idx)=>
+                <Series
+                key={serie + idx}
+                id={serie.id}
+                tipo="Serie"
+                lenguaje={serie.original_language}
+                nombre_0={serie.original_name}
+                descripcion={serie.overview}
+                popularidad={serie.popularity}
+                img={serie.poster_path}
+                fecha={serie.first_air_date}
+                titulo={serie.name}
+                promedio={serie.vote_average}
+                cantidad={serie.vote_count} />
                 )}
-
-                
+                </section>
                 <Footer/>
             </React.Fragment>
         )

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
 import Buscador from "../../Components/Buscador/Buscador";
-import Series from "../../Components/Series y Pelicula/Series";
+import Series from "../../Components/Series y Pelicula/Card-Series";
 import "./paginaseries.css"
 
 
@@ -40,11 +40,12 @@ class PaginaSeries extends Component {
                 id={serie.id}
                 tipo="Serie"
                 lenguaje={serie.original_language}
-                nombre_0={serie.original_name}
+                nombre={serie.original_name}
                 descripcion={serie.overview}
                 popularidad={serie.popularity}
                 img={serie.poster_path}
                 fecha={serie.first_air_date}
+                titulo={serie.title}
                 name={serie.name}
                 promedio={serie.vote_average}
                 cantidad={serie.vote_count} />)
