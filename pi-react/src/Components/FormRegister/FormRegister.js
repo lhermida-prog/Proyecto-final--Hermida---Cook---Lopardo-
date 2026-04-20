@@ -70,11 +70,11 @@ render(){
 
         <form onSubmit={(e) => this.Submit(e)}>
    
-     <input type="text" name="email"  value={this.state.email}onChange={(e) => this.controlarCambios(e,'email')} placeholder="email" />
+     <input type="email" name="email"  value={this.state.email}onChange={(e) => this.controlarCambios(e,'email')} placeholder="email" />
        <label for="movie"></label><br></br>
     
-    <input type="text" name="password" value={this.state.password}onChange={(e) => this.controlarCambios(e,'password')}placeholder="Password"/>
-     <label for="movie"></label><br></br>
+      <input type="password" name="password" value={this.state.password}onChange={(e) => this.controlarCambios(e,'password')}placeholder="Password"/>
+       <label for="movie"></label><br></br>
 
           
           <button type="submit">Registrarse</button>
