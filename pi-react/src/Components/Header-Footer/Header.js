@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logout from "../Logout/Logout";
 
 
 function Header() {
@@ -22,7 +21,6 @@ function Header() {
           {Etiquetas.map( (item , idx) => { 
           return (
           <li key ={ item + idx } className={item.clase}>
-            <logout/>
             <Link className="nav-link" to ={item.link}> {item.nombre}</Link>
           </li>
           )
