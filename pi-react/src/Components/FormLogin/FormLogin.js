@@ -10,7 +10,7 @@ const cookies = new Cookies()
 class FormLogin extends Component {
   constructor(props) {
     super(props);
-      this.state= {email:'',password:'',error:''}
+    this.state = { email: '', password: '', error: '' }
 
   };
 
@@ -39,15 +39,15 @@ class FormLogin extends Component {
       else {
         if (usuariosfiltrados[0].password == this.state.password) {
           let usuariosEnSesion = JSON.stringify({ sesionActiva: true })
-          cookies.set('usuarios-auth-cookie',this.state)
-          
+           cookies.set('usuario-auth-cookie',this.state.email)
+
 
         }
         else {
           this.setState({ error: "Las creedenciales son invalidas" })
           return;
         }
-        this.props.history.push("/home");
+        this.props.history.push("/");
       }
     }
 
@@ -55,9 +55,9 @@ class FormLogin extends Component {
   }
 
 
-controlarCambios(event,campo){
-    this.setState({[campo]:event.target.value});
-}
+  controlarCambios(event, campo) {
+    this.setState({ [campo]: event.target.value });
+  }
   render() {
     return (
       <div className="container">
@@ -70,23 +70,21 @@ controlarCambios(event,campo){
               <form onSubmit={(e) => this.Submit(e)}>
 
                 <div className="form-group">
-                  <label>Email</label>
-                  <input type="email" className="form-control" name="email" value={this.state.email} onChange={(e) => this.controlarCambios(e,'email')} placeholder="Ingresá tu email" />
+                  <label for= "email">Email</label>
+                  <input type="email" className="form-control" name="email" value={this.state.email} onChange={(e) => this.controlarCambios(e, 'email')} placeholder="Ingresá tu email" />
                 </div>
 
                 <div className="form-group">
-                  <label>Password</label>
-                  <input type="password" className="form-control" name="password" value={this.state.password} onChange={(e) => this.controlarCambios(e,'password')} placeholder="Ingresá tu contraseña" />
+                  <label for="password">Password</label>
+                  <input type="password" className="form-control" name="password" value={this.state.password} onChange={(e) => this.controlarCambios(e, 'password')} placeholder="Ingresá tu contraseña" />
                 </div>
 
-                <button type="submit">Iniciar sesión</button>
+                <button type="submit" className="btn btn-primary btn-block">Iniciar sesión</button>
 
               </form>
-
-              <p className="mt-3 text-center">
-                ¿No tenes cuenta? <Link to="/register">Registrate</Link>
-              </p>
               <p>{this.state.error}</p>
+              <p className="mt-3 text-center">¿No tenes cuenta? <Link to="/register">Registrate</Link></p>
+              
 
             </div>
           </div>
