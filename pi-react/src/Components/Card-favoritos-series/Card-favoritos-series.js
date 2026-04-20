@@ -42,7 +42,7 @@ class CardfavSeries extends Component {
                         <p className={`card-text ${this.state.mostrar ? "show" : "hide"}`}>{this.props.descripcion}</p>
                         <button className="Boton" onClick={() => this.sacarFav(this.props.id) }>
                         Sacar de Favoritos</button>
-                        <Link to={`/pelicula/${this.props.id}`}>Ir a detalle</Link>
+                        <Link to={`/serie/${this.props.id}`}>Ir a detalle</Link>
                     </div>
                 </article>
             </React.Fragment>
