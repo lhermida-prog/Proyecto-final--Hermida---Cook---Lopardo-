@@ -1,26 +1,28 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer"
 import { Link } from "react-router-dom";
 import Peliculas from "../../Components/Series y Pelicula/Card-Peliculas";
 import Series from "../../Components/Series y Pelicula/Card-Series";
+import CardfavPeliculas from "../../Components/Card-favoritos-pelicula/Card-favoritos-pelicula";
+import CardfavSeries from "../../Components/Card-favoritos-series/Card-favoritos-series";
 
-class Favoritos extends Component{
-    constructor(props){
+class Favoritos extends Component {
+    constructor(props) {
         super(props)
-        this.state=
-            {
-                informacionSeries : [],
-                informacionPeliculas : []
-            }
+        this.state =
+        {
+            informacionSeries: [],
+            informacionPeliculas: []
+        }
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         let id1 = localStorage.getItem("favoritos-peliculas")
         let idpelicula;
 
-         if (id1 !== null) {
+        if (id1 !== null) {
             idpelicula = JSON.parse(id1);
         } else {
             idpelicula = [];
@@ -29,19 +31,19 @@ class Favoritos extends Component{
 
         let peliculas = []
         idpelicula.map((id) =>
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
-            .then(res => res.json())
-            .then(data => {
-    
-                peliculas.push(data);
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
+                .then(res => res.json())
+                .then(data => {
 
-                this.setState({
-                    informacionPeliculas: peliculas
-                });
-            })
-            .catch(err => console.error(err))
-    )
-        
+                    peliculas.push(data);
+
+                    this.setState({
+                        informacionPeliculas: peliculas
+                    });
+                })
+                .catch(err => console.error(err))
+        )
+
         let id2 = localStorage.getItem("favoritos-series")
         let idserie;
 
@@ -51,76 +53,141 @@ class Favoritos extends Component{
             idserie = [];
         }
         let series = []
-        idserie.map((id)=> 
-        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
-            .then(res => res.json())
-            .then(data => {
-                
-                series.push(data);
+        idserie.map((id) =>
+            fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=5819e166bc6813d39312079be7ac67ba`)
+                .then(res => res.json())
+                .then(data => {
 
-                this.setState({
-                    informacionSeries: series
-                });
-            })
-            .catch(err => console.error(err))
-    )
-    
+                    series.push(data);
+
+                    this.setState({
+                        informacionSeries: series
+                    });
+                })
+                .catch(err => console.error(err))
+        )
+
     }
 
-    render(){
+    render() {
         console.log(this.state.informacionPeliculas);
 
-        if(this.state.informacionPeliculas.length === 0 && this.state.informacionSeries.length === 0){
-            return <h3>No hay agregados a favoritos aún</h3>
+
+        if (this.state.informacionSeries.length === 0 && this.state.informacionPeliculas.length === 0 ){
+            return (
+                <React.Fragment>
+                    <Header/>
+                <h3>No hay Peliculas ni series agregadas a favoritos</h3>
+                <Footer/>
+                </React.Fragment>
+            )
         }
 
-        return(
+        if (this.state.informacionPeliculas.length === 0) {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <h3>No hay Peliculas agregados a favoritos aún</h3>
+                    <h2 className="alert alert-warning">Series favoritas</h2>
+                    <section class="row cards" id="tv-show">
+                        {this.state.informacionSeries.map((serie, idx) =>
+                            <CardfavSeries
+                                key={serie + idx}
+                                id={serie.id}
+                                tipo="Serie"
+                                lenguaje={serie.original_language}
+                                nombre_0={serie.original_name}
+                                descripcion={serie.overview}
+                                popularidad={serie.popularity}
+                                img={serie.poster_path}
+                                fecha={serie.first_air_date}
+                                titulo={serie.name}
+                                promedio={serie.vote_average}
+                                cantidad={serie.vote_count} />
+                        )}
+                    </section>
+                    <Footer />
+                </React.Fragment>
+            )
+        }
+        if (this.state.informacionSeries.length === 0) {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <h2 className="alert alert-primary">Películas favoritas</h2>
+                    <section class="row cards" id="movies">
+                        {this.state.informacionPeliculas.map((serie, idx) =>
+                            <CardfavPeliculas
+                                key={serie + idx}
+                                id={serie.id}
+                                tipo="Serie"
+                                lenguaje={serie.original_language}
+                                nombre_0={serie.original_name}
+                                descripcion={serie.overview}
+                                popularidad={serie.popularity}
+                                img={serie.poster_path}
+                                fecha={serie.first_air_date}
+                                titulo={serie.name}
+                                promedio={serie.vote_average}
+                                cantidad={serie.vote_count} />
+                        )}
+                    </section>
+                    <h3>No hay Series agregadas a favoritos aún</h3>
+                    <Footer />
+                </React.Fragment>
+            )
+        }
+        
+
+
+
+        return (
             <React.Fragment>
-                <Header/>
+                <Header />
                 <h2 className="alert alert-primary">Películas favoritas</h2>
                 <section class="row cards" id="movies">
-                {this.state.informacionPeliculas.map((pelicula , idx)=> 
-                <Peliculas
-                key={pelicula + idx}
-                id ={pelicula.id}
-                tipo ="Película"
-                lenguaje={pelicula.original_language}
-                titulo_0={pelicula.original_title}
-                descripcion={pelicula.overview}
-                popularidad={pelicula.popularity}
-                img={pelicula.poster_path}
-                fecha={pelicula.release_date}
-                titulo={pelicula.title}
-                promedio={pelicula.vote_average}
-                cantidad={pelicula.vote_count}/>
-                )}
+                    {this.state.informacionPeliculas.map((pelicula, idx) =>
+                        <CardfavPeliculas
+                            key={pelicula + idx}
+                            id={pelicula.id}
+                            tipo="Película"
+                            lenguaje={pelicula.original_language}
+                            titulo_0={pelicula.original_title}
+                            descripcion={pelicula.overview}
+                            popularidad={pelicula.popularity}
+                            img={pelicula.poster_path}
+                            fecha={pelicula.release_date}
+                            titulo={pelicula.title}
+                            promedio={pelicula.vote_average}
+                            cantidad={pelicula.vote_count} />
+                    )}
                 </section>
                 <h2 className="alert alert-warning">Series favoritas</h2>
                 <section class="row cards" id="tv-show">
-                {this.state.informacionSeries.map((serie , idx)=>
-                <Series
-                key={serie + idx}
-                id={serie.id}
-                tipo="Serie"
-                lenguaje={serie.original_language}
-                nombre_0={serie.original_name}
-                descripcion={serie.overview}
-                popularidad={serie.popularity}
-                img={serie.poster_path}
-                fecha={serie.first_air_date}
-                titulo={serie.name}
-                promedio={serie.vote_average}
-                cantidad={serie.vote_count} />
-                )}
+                    {this.state.informacionSeries.map((serie, idx) =>
+                        <CardfavSeries
+                            key={serie + idx}
+                            id={serie.id}
+                            tipo="Serie"
+                            lenguaje={serie.original_language}
+                            nombre_0={serie.original_name}
+                            descripcion={serie.overview}
+                            popularidad={serie.popularity}
+                            img={serie.poster_path}
+                            fecha={serie.first_air_date}
+                            titulo={serie.name}
+                            promedio={serie.vote_average}
+                            cantidad={serie.vote_count} />
+                    )}
                 </section>
-                <Footer/>
+                <Footer />
             </React.Fragment>
         )
     }
-    
-    
 
-    
+
+
+
 }
 export default Favoritos
 
