@@ -24,13 +24,13 @@ controlarCambios(event){
 render(){
     return(
     <div className="container">
-      <Header/>
+     
       <FormRegister/>
     
  
 
 
-    <Footer/>
+    
       </div>
       
 
