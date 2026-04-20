@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../../screens/Register/registro.css";
 import FormRegister from "../../Components/FormRegister/FormRegister";
 
+
 class Register extends Component {
 constructor(props) {
     super(props);
