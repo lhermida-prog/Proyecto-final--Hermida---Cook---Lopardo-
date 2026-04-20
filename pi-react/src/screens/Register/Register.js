@@ -2,7 +2,8 @@ import React,{ Component } from "react";
 import Footer from "../../Components/Header-Footer/Footer";
 import Header from "../../Components/Header-Footer/Header";
 import { Link } from "react-router-dom";
-import "./registro.css"
+import "../../screens/Register/registro.css";
+import FormRegister from "../../Components/FormRegister/FormRegister";
 
 class Register extends Component {
 constructor(props) {
@@ -24,56 +25,12 @@ render(){
     return(
     <div className="container">
       <Header/>
+      <FormRegister/>
     
-      <div className="registro-container">
-
-        <h2 className="alert alert-primary">Registro</h2>
-        <div className="row justify-content-center">
-          <div className="col-md-6">
-
-            <form onSubmit={(e) => this.evitarSubmit(e)}>
-
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  value={this.state.email}
-                  onChange={(e) => this.controlarCambios(e)}
-                  placeholder="Ingresá tu email"
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Contraseña</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={this.state.password}
-                  onChange={(e) => this.controlarCambios(e)}
-                  placeholder="Ingresá tu contraseña"
-                />
-              </div>
-
-              <button type="submit" className="btn btn-primary btn-block">
-              <Link to="/login">Registrarse</Link>
-              </button>
-
-            </form>
-
-            <p className="mt-3 text-center">
-              ¿Ya tenés cuenta? <Link to="/login">Iniciar sesión</Link>
-            </p>
-
-         </div>
-        </div>
-      </div>
-        
+ 
 
 
-        <Footer/>
+    <Footer/>
       </div>
       
 

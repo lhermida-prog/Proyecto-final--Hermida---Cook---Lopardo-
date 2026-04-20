@@ -2,8 +2,8 @@ import React,{ Component } from "react";
 import Footer from "../Header-Footer/Footer";
 import Header from "../Header-Footer/Header";
 import { Link } from "react-router-dom";
-import "./registro.css"
-
+import "../../screens/Register/registro.css";
+import { withRouter } from "react-router-dom";
 class FormRegister extends Component {
 constructor(props) {
     super(props);
@@ -12,33 +12,29 @@ constructor(props) {
 };
 
        
-  evitarSubmit(event) {
-    event.preventDefault();
-    console.log(event.target);
-    this.props.history.push('/Login/')
+ 
 
-  }
-
-Submit(email,password){
-let usuarios = {
+Submit(event){
+event.preventDefault(); 
+let usuario = {
 
   email: this.state.email,
   password: this.state.password
 
 }
- if (password.length<6) {
+ if (this.state.password.length<6) {
 this.setState({error:"La contrseña tiene que tener al menos 6"})
 return;
 }
+let usuariosstorage = localStorage.getItem("usuarios")
+let usuariosparseado = JSON.parse(usuariosstorage)
 if(usuariosparseado != null){
- let mailsenuso = usuariosparseado.filter(usuario => usuario.email = this.state.email)
+ let mailsenuso = usuariosparseado.filter(usuario => usuario.email === this.state.email)
  if(mailsenuso.length>0){
     this.setState({error:"El email ya está en uso"})
     return;
  }
 }
-let usuariosstorage = localStorage.getItem("usuarios")
-let usuariosparseado = JSON.parse(usuariosstorage)
 if(usuariosparseado == null){
    let primerusuario =[usuario]
   let usuariostring = JSON.stringify(primerusuario)
@@ -49,18 +45,16 @@ usuariosparseado.push(usuario)
 let usuariostring = JSON.stringify(usuariosparseado)
 localStorage.setItem("usuarios",usuariostring)
 
-
+ this.props.history.push("/login");
 }
 
    
  }
 
 
-
-  controlarCambios(event) {
-    this.setState({ valor: event.target.value });
-  }
-  
+controlarCambios(event,campo){
+    this.setState({[campo]:event.target.value});
+}
 render(){
     return(
     <div className="container">
@@ -74,14 +68,15 @@ render(){
 
   <h2>Registro</h2>
 
-        <form onSubmit={(e) => this.submit(e)}>
+        <form onSubmit={(e) => this.Submit(e)}>
    
-     <input type="text" name="email"  value={this.state.email}onChange={(e) => this.controlarCambios(e)} placeholder="email" />
-       <label for="movie">Ingrese su email</label><br></br>
+     <input type="text" name="email"  value={this.state.email}onChange={(e) => this.controlarCambios(e,'email')} placeholder="email" />
+       <label for="movie"></label><br></br>
     
-    <input type="text" name="password" value={this.state.password}onChange={(e) => this.controlarCambios(e)}placeholder="Password"/>
-     <label for="movie">Ingrese su contrasena</label><br></br>
+    <input type="text" name="password" value={this.state.password}onChange={(e) => this.controlarCambios(e,'password')}placeholder="Password"/>
+     <label for="movie"></label><br></br>
 
+          
           <button type="submit">Registrarse</button>
 
         </form>
@@ -107,4 +102,4 @@ render(){
 }
 }
 
-export default FormRegister
+export default withRouter(FormRegister);

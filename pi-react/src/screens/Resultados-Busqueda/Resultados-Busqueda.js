@@ -11,8 +11,7 @@ constructor(props) {
 
 componentDidMount(){
 
-  
-  
+
   fetch(`https://api.themoviedb.org/3/search/movie?query=${this.state.pelicula}?api_key=5819e166bc6813d39312079be7ac67ba`)
      .then(response => response.json())
       .then(data =>

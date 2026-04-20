@@ -18,7 +18,7 @@ function App() {
   
   return (
     <React.Fragment>
-      <BrowserRouter>
+
       <Switch>
         <Route path = '/login' component = {Login}/>
         <Route path = '/register' component = {Register}/>
@@ -32,7 +32,7 @@ function App() {
         <Route path = '*' component = {Notfound}/>
 
       </Switch>
-      </BrowserRouter>  
+
 
     </React.Fragment>
   );
