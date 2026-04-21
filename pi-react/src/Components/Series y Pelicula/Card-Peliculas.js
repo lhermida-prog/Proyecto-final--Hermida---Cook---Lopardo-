@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import Cookies from "universal-cookie"
 import "./peliculas.css"
+
+const cookies = new Cookies()
 
 class Peliculas extends Component {
     constructor(props) {
@@ -50,6 +53,9 @@ class Peliculas extends Component {
         })
     }
     render() {
+
+        let usuario = cookies.get("usuario-auth-cookie")
+
         return (
             <React.Fragment>
                 <article className="single-card-movie">
@@ -60,11 +66,12 @@ class Peliculas extends Component {
                             {this.state.mostrar ? "Ver menos" : "Ver más"}
                         </button>
                         <p className={`card-text ${this.state.mostrar ? "show" : "hide"}`}>{this.props.descripcion}</p>
-                        <button className="Boton" onClick={() => this.state.estado
+
+                        {usuario ? <button className="Boton" onClick={() => this.state.estado
                             ? this.sacarFav(this.props.id)
                             : this.agregarFav(this.props.id)}>
                             {this.state.estado ? "Sacar de favoritos" : "Agregar a favoritos"}
-                        </button>
+                        </button> : ""}
                         <Link to={`/pelicula/${this.props.id}`}>Ir a detalle</Link>
                     </div>
                 </article>
