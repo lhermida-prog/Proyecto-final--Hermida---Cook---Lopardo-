@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
+import Cookies from "universal-cookie"
 
+const cookies = new Cookies()
 
 class SeriesDetalles extends Component {
     constructor(props) {
@@ -70,6 +72,10 @@ class SeriesDetalles extends Component {
     }
 
     render() {
+
+        let usuario = cookies.get("usuario-auth-cookie")
+
+
         if (this.state.serie === "") {
             return <h2>Cargando Serie...</h2>
         }
@@ -85,9 +91,9 @@ class SeriesDetalles extends Component {
                         <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> {this.state.serie.first_air_date} </p>
                         <p class="mt-0 mb-0" id="episodes"><strong>Número de capítulos:</strong> {this.state.serie.number_of_episodes}</p>
                         <p class="mt-0 seasons"><strong>Temporadas:</strong> {this.state.serie.number_of_seasons}</p>
-                        <button onClick={() => this.state.mostrar ? this.agregarFav(this.state.serie.id) : this.sacarFav(this.state.serie.id)}>
+                        {usuario ? <button onClick={() => this.state.mostrar ? this.agregarFav(this.state.serie.id) : this.sacarFav(this.state.serie.id)}>
                             {this.state.mostrar ? "Agregar a favoritos" : "Sacar de favoritos"}
-                        </button>
+                        </button> : ""}
                     </section>
                     <img class="col-md-6" src={`https://image.tmdb.org/t/p/original${this.state.serie.poster_path}`} alt="" />
                 </section>

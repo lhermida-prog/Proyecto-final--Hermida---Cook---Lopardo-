@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Header from "../../Components/Header-Footer/Header";
 import Footer from "../../Components/Header-Footer/Footer";
+import Cookies from "universal-cookie";
 
+const cookies = new Cookies()
 
 class PeliculasDetalles extends Component {
     constructor(props) {
@@ -34,13 +36,13 @@ class PeliculasDetalles extends Component {
 
         let storage = localStorage.getItem("favoritos-peliculas")
         storage = JSON.parse(storage)
-       
+
 
         if (storage !== null) {
             storage.push(id)
             console.log(storage);
             let storageString = JSON.stringify(storage)
-            localStorage.setItem("favoritos", storageString)
+            localStorage.setItem("favoritos-peliculas", storageString)
 
             this.setState({
                 mostrar: false
@@ -71,6 +73,9 @@ class PeliculasDetalles extends Component {
     }
 
     render() {
+
+        let usuario = cookies.get("usuario-auth-cookie")
+
         if (this.state.pelicula === "") {
             return <h2>Cargando Pelicula...</h2>
         }
@@ -91,9 +96,9 @@ class PeliculasDetalles extends Component {
                             ? this.state.pelicula.genres[0].name
                             : "Sin género"}</p>
                         <p className="mt-0 mb-0 length"><strong>Duracion:</strong> {this.state.pelicula.runtime} minutos</p>
-                        <button onClick={() => this.state.mostrar ? this.agregarFav(this.state.pelicula.id) : this.sacarFav(this.state.pelicula.id)}>
+                        {usuario ? <button onClick={() => this.state.mostrar ? this.agregarFav(this.state.pelicula.id) : this.sacarFav(this.state.pelicula.id)}>
                             {this.state.mostrar ? "Agregar a favoritos" : "Sacar de favoritos"}
-                        </button>
+                        </button> : ""}
                     </section>
                 </section>
 

@@ -4,7 +4,7 @@ import Buscador from '../../Components/Buscador/Buscador';
 import Header from "../../Components/Header-Footer/Header"
 import Footer from "../../Components/Header-Footer/Footer"
 import Peliculas from '../../Components/Series y Pelicula/Card-Peliculas';
-
+import { Link } from 'react-router-dom';
 
 class PaginaPeliculas extends Component {
   constructor(props) {
