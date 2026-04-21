@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Peliculas from '../Series y Pelicula/Card-Peliculas';
 import Series from '../Series y Pelicula/Card-Series';
+import { Link } from 'react-router-dom';
 
-class PaginaPeliculas extends Component {
+class Secciones extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,6 +41,7 @@ class PaginaPeliculas extends Component {
     return (
       <React.Fragment>
         <h2 className="alert alert-primary">Popular movies this week</h2>
+        <Link to = "/vermaspeliculas"><button>Ver Todas</button></Link>
         <section className="row cards all-movies" id="movies">
           {this.state.datos === "" ? (
             <h3>Cargando...</h3>
@@ -60,6 +62,7 @@ class PaginaPeliculas extends Component {
           )}
         </section>
         <h2 className="alert alert-warning">TV shows airing today</h2>
+        <Link to = "/vermasseries"><button>Ver Todas</button></Link>
         <section className="row cards all-movies" id="movies">
           {this.state.peliculas_cartel === "" ? (
             <h3>Cargando...</h3>
@@ -86,5 +89,5 @@ class PaginaPeliculas extends Component {
   }
 }
 
-export default PaginaPeliculas
+export default Secciones
 

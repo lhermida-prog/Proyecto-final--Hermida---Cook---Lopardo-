@@ -10,6 +10,8 @@ import PaginaPeliculas from "./screens/Paginadepeliculas/Paginadepeliculas"
 import Series from "./screens/Paginadeseries/Paginadeseries";
 import ResultadosBusqueda from "./screens/Resultados-Busqueda/Resultados-Busqueda";
 import Favoritos from "./screens/Pagina-Favoritos/Pagina-Favoritos"
+import Vermas_series from "./screens/Vermas-series/Vermas-series";
+import Vermas_peliculas from "./screens/Vermas-peliculas/Vermas-peliculas";
 
 
 
@@ -22,13 +24,15 @@ function App() {
       <Switch>
         <Route path = '/login' component = {Login}/>
         <Route path = '/register' component = {Register}/>
+        <Route path = '/vermasseries' component = {Vermas_series}/>
+        <Route path = '/vermaspeliculas' component = {Vermas_peliculas}/>
         <Route path = '/' exact={true} component = {Home}/>
         <Route path = '/pelicula/:id' component = {Detalles}/>
         <Route path = '/peliculas' component = {PaginaPeliculas}/>
         <Route path = '/series' component = {Series}/>
         <Route path = '/serie/:id' component = {DetallesSeries}/>
         <Route path = '/favorites' component = {Favoritos}/>
-        <Route path = '/ResultadosBusqueda/:search/:eleccion' component  = {ResultadosBusqueda}/>
+        <Route path="/ResultadosBusqueda/:eleccion/:valor" component={ResultadosBusqueda} />
         <Route path = '*' component = {Notfound}/>
 
       </Switch>
