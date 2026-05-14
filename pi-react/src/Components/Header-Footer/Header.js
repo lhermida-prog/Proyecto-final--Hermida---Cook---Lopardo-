@@ -30,7 +30,7 @@ class Header extends Component {
   render() {
     let usuario = cookies.get("usuario-auth-cookie")
 
-    if (!usuario) {
+    if (usuario === null || usuario === undefined) {
       return <div className="container">
         <h1>UdeSA Movies</h1>
         <nav>
