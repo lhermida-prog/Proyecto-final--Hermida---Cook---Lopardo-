@@ -31,7 +31,7 @@ class FormLogin extends Component {
     }
     else {
       let userspareados = JSON.parse(usersStorage)
-      let usuariosfiltrados = userspareados.filter(usuario => usuario.email === this.state.email)
+      let usuariosfiltrados = userspareados.filter( usuario => usuario.email === this.state.email)
       if (usuariosfiltrados.length === 0) {
         this.setState({ error: "El usuario ingresado no existe" })
         return;
@@ -58,6 +58,8 @@ class FormLogin extends Component {
   controlarCambios(event, campo) {
     this.setState({ [campo]: event.target.value });
   }
+
+  
   render() {
     return (
       <div className="container">

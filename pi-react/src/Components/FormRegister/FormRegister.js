@@ -4,16 +4,15 @@ import Header from "../Header-Footer/Header";
 import { Link } from "react-router-dom";
 import "../../screens/Register/registro.css";
 import { withRouter } from "react-router-dom";
+
+
 class FormRegister extends Component {
   constructor(props) {
     super(props);
     this.state = { email: '', password: '', error: '' }
 
   };
-
-
-
-
+  
   Submit(event) {
     event.preventDefault();
     let usuario = {
