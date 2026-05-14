@@ -1,17 +1,16 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 
-class CardfavPeliculas extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            estado: false,
-            mostrar: false
-        }
-    }
+function CardfavPeliculas (props) {
+    const [mostrar , setmostrar] = useState(false)
+    const [estado, setestado] = useState (false)
+            
+            
+        
+    
    
-    sacarFav(id) {
+    function sacarFav(id) {
         let storage = localStorage.getItem("favoritos-peliculas")
         storage = JSON.parse(storage)
 
@@ -20,34 +19,31 @@ class CardfavPeliculas extends Component {
             let storageString = JSON.stringify(storageFiltrado)
             localStorage.setItem("favoritos-peliculas", storageString)
         }
-        this.setState({
-            estado: false
-        })
+       
+        setestado(false) 
+        
     }
-    verMas() {
-        this.setState({
-            mostrar: !this.state.mostrar
-        })
-    }
-    render() {
+    function verMas() {
+            setmostrar(!mostrar)
+        }
+    
         
         return (
             <React.Fragment>
                 <article className="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/original${this.props.img}`} className="card-img-top" alt={this.props.titulo} />
+                    <img src={`https://image.tmdb.org/t/p/original${props.img}`} className="card-img-top" alt={props.titulo} />
                     <div className="cardBody">
-                        <h5 className="card-title">{this.props.titulo}</h5>
-                        <button className="btn btn-primary" onClick={() => this.verMas()}>
-                            {this.state.mostrar ? "Ver menos" : "Ver más"}
+                        <h5 className="card-title">{props.titulo}</h5>
+                        <button className="btn btn-primary" onClick={() => verMas()}>
+                            {mostrar ? "Ver menos" : "Ver más"}
                         </button>
-                        <p className={`card-text ${this.state.mostrar ? "show" : "hide"}`}>{this.props.descripcion}</p>
-                        <button className="Boton" onClick={() => this.sacarFav(this.props.id) }>
-                        Sacar de Favoritos</button>
-                        <Link to={`/pelicula/${this.props.id}`}>Ir a detalle</Link>
+                        <p className={`card-text ${mostrar ? "show" : "hide"}`}>{props.descripcion}</p>
+                        <button className="Boton" onClick={() => sacarFav(props.id) }>Sacar de Favoritos</button>
+                        <Link to={`/pelicula/${props.id}`}>Ir a detalle</Link>
                     </div>
                 </article>
             </React.Fragment>
         )
     }
-}
+
 export default CardfavPeliculas

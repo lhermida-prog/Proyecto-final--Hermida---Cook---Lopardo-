@@ -1,19 +1,15 @@
-import React, { Component } from "react";
+import React, {  useState , useEffect} from "react";
 import { Link } from 'react-router-dom';
 import Cookies from "universal-cookie"
 import "./peliculas.css"
 
 const cookies = new Cookies()
 
-class Peliculas extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            estado: false,
-            mostrar: false
-        }
-    }
-    agregarFav(id) {
+function Peliculas (props) {
+    const [estado, setestado] = useState(false)
+    const [mostrar, setmostrar] = useState (false)
+          
+    function agregarFav(id) {
 
         let storage = localStorage.getItem("favoritos-peliculas")
         storage = JSON.parse(storage)
@@ -29,12 +25,10 @@ class Peliculas extends Component {
                 let storageString = JSON.stringify(storage)
                 localStorage.setItem("favoritos-peliculas", storageString)
             }
-            this.setState({
-                estado: true
-            })
+            setestado(true)
         }
     }
-    sacarFav(id) {
+    function sacarFav(id) {
         let storage = localStorage.getItem("favoritos-peliculas")
         storage = JSON.parse(storage)
 
@@ -43,40 +37,36 @@ class Peliculas extends Component {
             let storageString = JSON.stringify(storageFiltrado)
             localStorage.setItem("favoritos-peliculas", storageString)
         }
-        this.setState({
-            estado: false
-        })
+            setestado(false)
     }
-    verMas() {
-        this.setState({
-            mostrar: !this.state.mostrar
-        })
+    function verMas() {
+        setmostrar (!mostrar)
     }
-    render() {
+   
 
         let usuario = cookies.get("usuario-auth-cookie")
 
         return (
             <React.Fragment>
                 <article className="single-card-movie">
-                    <img src={`https://image.tmdb.org/t/p/original${this.props.img}`} className="card-img-top" alt={this.props.titulo} />
+                    <img src={`https://image.tmdb.org/t/p/original${props.img}`} className="card-img-top" alt={props.titulo} />
                     <div className="cardBody">
-                        <h5 className="card-title">{this.props.titulo}</h5>
-                        <button className="btn btn-primary" onClick={() => this.verMas()}>
-                            {this.state.mostrar ? "Ver menos" : "Ver más"}
+                        <h5 className="card-title">{props.titulo}</h5>
+                        <button className="btn btn-primary" onClick={() => verMas()}>
+                            {mostrar ? "Ver menos" : "Ver más"}
                         </button>
-                        <p className={`card-text ${this.state.mostrar ? "show" : "hide"}`}>{this.props.descripcion}</p>
+                        <p className={`card-text ${mostrar ? "show" : "hide"}`}>{props.descripcion}</p>
 
-                        {usuario ? <button className="Boton" onClick={() => this.state.estado
-                            ? this.sacarFav(this.props.id)
-                            : this.agregarFav(this.props.id)}>
-                            {this.state.estado ? "Sacar de favoritos" : "Agregar a favoritos"}
+                        {usuario ? <button className="Boton" onClick={() => estado
+                            ? sacarFav(props.id)
+                            : agregarFav(props.id)}>
+                            {estado ? "Sacar de favoritos" : "Agregar a favoritos"}
                         </button> : ""}
-                        <Link to={`/pelicula/${this.props.id}`}>Ir a detalle</Link>
+                        <Link to={`/pelicula/${props.id}`}>Ir a detalle</Link>
                     </div>
                 </article>
             </React.Fragment>
         )
     }
-}
+
 export default Peliculas

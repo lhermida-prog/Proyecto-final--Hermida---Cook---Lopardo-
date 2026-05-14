@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Footer (){
-    let integrantes = ["Lucas Hermida","Gonzalo Lopardo","Thomas Cook"]
+    const [integrantes,setintegrantes] = useState(["Lucas Hermida","Gonzalo Lopardo","Thomas Cook"])
     return(
         <footer className="alert alert-primary mt-4 text-center">
             {integrantes.map( (item , idx ) => { 
